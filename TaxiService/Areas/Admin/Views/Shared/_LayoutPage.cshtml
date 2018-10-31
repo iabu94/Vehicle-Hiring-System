@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/Images/EgoSqureIco.ico" type="image/ico" />
+    <title>eGo - Vehicle Hiring System.</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom Theme Style -->
+    <link href="~/Content/custom.min.css" rel="stylesheet" />
+    <script src="~/scripts/notify.min.js"></script>
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="@Url.Action("Index", "Home")" class="site_title" style="height:80px"><img src="~/Images/EgoSqureIco.ico" alt="..." style="height:50px; width:50px; margin-top:20px; margin-left:10px"> <span><img src="~/Images/EgoTaxi.png" style="height:70px; width:150px"></span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="@Url.Content(Session["ImageUrl"].ToString())" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>@Session["LoggedUserName"]</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            <ul class="nav side-menu">
+                                <!--Rider Menu-->
+                                <li>
+                                    <a><i class="fa fa-users"></i> Riders <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("Active", "Rider",new { area = "Admin" })">Active</a></li>
+                                        <li><a href=@Url.Action("Pending","Rider", new { area = "Admin"})>Pending</a></li>
+                                        <li><a href=@Url.Action("Rejected","Rider", new { area = "Admin"})>Rejected</a></li>
+                                    </ul>
+                                </li>
+                                <!--Driver Menu-->
+                                <li>
+                                    <a><i class="fa fa-cab"></i> Drivers <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("Active", "Driver",new { area = "Admin" })">Active</a></li>
+                                        <li><a href=@Url.Action("Pending", "Driver", new { area = "Admin"})>Pending</a></li>
+                                        <li><a href=@Url.Action("Rejected", "Driver", new { area = "Admin"})>Rejected</a></li>
+                                    </ul>
+                                </li>
+                                <!--Rides Menu-->
+                                <li>
+                                    <a><i class="fa fa-external-link"></i> Rides <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("All", "Ride",new { area = "Admin" })">All</a></li>
+                                        <li><a href=@Url.Action("Completed", "Ride", new { area = "Admin"})>Completed</a></li>
+                                        <li><a href=@Url.Action("Approved", "Ride", new { area = "Admin"})>Approved</a></li>
+                                        <li><a href=@Url.Action("Rejected", "Ride", new { area = "Admin"})>Rejected</a></li>
+                                        <li><a href=@Url.Action("Cancelled", "Ride", new { area = "Admin"})>Cancelled</a></li>
+                                    </ul>
+                                </li>
+                                <!--Trips Menu-->
+                                <li>
+                                    <a><i class="fa fa-institution"></i> Trips <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("Pending","Trip", new { area = "Admin" })">Pending</a></li>
+                                        <li><a href="@Url.Action("All", "Trip", new { area = "Admin" })">All</a></li>
+                                        <li><a href=@Url.Action("Completed", "Trip", new { area = "Admin"})>Completed</a></li>
+                                        <li><a href=@Url.Action("Approved", "Trip", new { area = "Admin"})>Approved</a></li>
+                                        <li><a href=@Url.Action("Rejected", "Trip", new { area = "Admin"})>Rejected</a></li>
+                                        <li><a href=@Url.Action("Cancelled", "Trip", new { area = "Admin"})>Cancelled</a></li>
+                                    </ul>
+                                </li>
+                                <!--Payment Menu-->
+                                <li>
+                                    <a><i class="fa fa-money"></i> Payment <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("All", "Payment",new { area = "Admin" })">Active</a></li>
+                                        <li><a href=@Url.Action("Completed", "Trip", new { area = "Admin"})>Completed</a></li>
+                                        <li><a href=@Url.Action("Approved", "Trip", new { area = "Admin"})>Approved</a></li>
+                                        <li><a href=@Url.Action("Cancelled", "Trip", new { area = "Admin"})>Cancelled</a></li>
+                                    </ul>
+                                </li>
+                                <!--Selling Vehicle Menu-->
+                                <li>
+                                    <a href="@Url.Action("Index","SellerAdmin",new { area = "Admin"})"><i class="fa fa-search-plus"></i> Selling Ads </a>
+                                </li>
+                                <!--Settings Menu-->
+                                <li>
+                                    <a href=#><i class="fa fa-cogs"></i> Settings </a>
+                                </li>
+                                <!--Logout Menu-->
+                                <li>
+                                    <a href="@Url.Action("Logout","Login",new { area = "Admin"})"><i class="fa fa-sign-out"></i> Logout </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="@Url.Action("Logout","Login",new { area = "Admin"})">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="images/img.jpg" alt="">@ViewBag.NameOfUser
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="javascript:;"> Profile</a></li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="javascript:;">Help</a></li>
+                                    <li><a href="@Url.Action("Logout","Login")"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">6</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="text-center">
+                                            <a>
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- /page content -->
+
+            <footer>
+                <div class="pull-right">
+                    Vehicle Rental System - Developed by <a href="https://facebook.com/iAbu94">Abu Hackzz</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="~/scripts/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/scripts/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/scripts/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/scripts/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/scripts/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/scripts/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/scripts/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/scripts/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/scripts/Flot/jquery.flot.js"></script>
+    <script src="~/scripts/Flot/jquery.flot.pie.js"></script>
+    <script src="~/scripts/Flot/jquery.flot.resize.js"></script>
+    <script src="~/scripts/Flot/jquery.flot.stack.js"></script>
+    <script src="~/scripts/Flot/jquery.flot.time.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/scripts/Flot_Plugins/curvedLines.js"></script>
+    <script src="~/scripts/Flot_Plugins/jquery.flot.spline.min.js"></script>
+    <script src="~/scripts/Flot_Plugins/jquery.flot.orderBars.js"></script>
+    <!-- DateJS -->
+    <script src="~/scripts/Date/date.js"></script>
+    <!-- JQVMap -->
+    <script src="~/scripts/JQVMap/jquery.vmap.js"></script>
+    <script src="~/scripts/JQVMap/jquery.vmap.world.js"></script>
+    <script src="~/scripts/JQVMap/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/scripts/Date/moment.min.js"></script>
+    <script src="~/scripts/Date/daterangepicker.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="~/scripts/custom.min.js"></script>
+</body>
+</html>

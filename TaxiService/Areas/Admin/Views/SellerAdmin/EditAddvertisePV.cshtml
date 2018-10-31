@@ -1,0 +1,92 @@
+﻿@model TaxiService.Models.SellingVehicleDetail
+
+@{
+    Layout = null;
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">Edit Addvertisment</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<div class="site-theme">
+    @using (Html.BeginForm("EditAddvertise", "SellerAdmin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div style="padding-right:65px;padding-left:65px">
+                @Html.HiddenFor(x=>x.SellingID)
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="navbar-form div-row">
+                            @Html.Label("Selling Head")
+                            @Html.TextBoxFor(model => model.SellingHead, new { @class = "form-control", @style = "float:right", @required = "required", @maxlength = "40" })
+                        </div>
+
+                        <div class="navbar-form div-row">
+                            @Html.Label("Mileage Km")
+                            @Html.TextBoxFor(model => model.MileageKm, new { @class = "form-control", @style = "float:right", @required = "required" })
+                        </div>
+                        <div class="navbar-form div-row">
+                            @Html.Label("Price")
+                            @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @style = "float:right", @required = "required" })
+                        </div>
+
+
+                        <div class="navbar-form div-row">
+                            @Html.Label("Brand")
+                            @Html.TextBoxFor(model => model.VehicleBrand, new { @class = "form-control", @style = "float:right", @required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="navbar-form div-row">
+                            @Html.Label("Model")
+                            @Html.TextBoxFor(model => model.VehicleModel, new { @class = "form-control", @style = "float:right", @required = "required" })
+                        </div>
+
+                        <div class="navbar-form div-row">
+                            @Html.Label("Year")
+                            @Html.TextBoxFor(model => model.VehicleModelYear, new { @class = "form-control", @style = "float:right", @required = "required" })
+                        </div>
+
+                        <div class="navbar-form div-row">
+                            @Html.Label("Condition")
+                            @Html.TextBoxFor(model => model.Condition, new { @class = "form-control", @style = "float:right", @required = "required" })
+                        </div>
+
+                        <div class="navbar-form div-row">
+                            @Html.Label("Engine Capacity")
+                            @Html.TextBoxFor(model => model.EngineCapacity, new { @class = "form-control", @style = "float:right", @required = "required" })
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-form row">
+                    <label style="margin-left:10px">Description</label>
+                    @Html.TextAreaFor(model => model.VehicleDescription, new { @class = "form-control", @style = "float:right;margin-right:10px;width:580px", @required = "required", @rows = "8" })
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="navbar-form div-row">
+                            @Html.Label("Contact Number")
+                            @Html.TextBoxFor(model => model.ContactNumber, new { @class = "form-control", @style = "float:right", @required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="navbar-form div-row">
+                            @Html.Label("Uploaded Date")
+                            @Html.TextBoxFor(model => model.UploadedDate, new { @class = "form-control", @style = "float:right", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer site-theme">
+                <button type="submit" class="btn btn-success" required>Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    }
+</div>

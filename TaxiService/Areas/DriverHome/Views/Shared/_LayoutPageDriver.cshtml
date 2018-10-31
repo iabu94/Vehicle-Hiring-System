@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<!--Header-->
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        eGo Taxi Driver
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="~/Areas/DriverHome/Content/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <style>
+        .sidebar .user-info {
+            padding: 10px 10px 10px 10px;
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 1px solid #e9e9e9;
+            background: url('../../Images/sidebar-2.jpg') no-repeat no-repeat;
+            height: 135px;
+            color: white;
+        }
+
+        .img_user {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+        .name{
+            margin-top:20px;
+        }
+    </style>
+
+</head>
+
+
+
+<body class="dark-edition">
+    <div class="wrapper ">
+        <!--Side bar start from this-->
+        <div class="sidebar" data-color="orange" data-background-color="black" data-image="~/Areas/DriverHome/Images/sidebar-2.jpg">
+
+            <!--Driver Image and logo will appear here-->
+            <div class="user-info">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm"> <img class="img_user" src="@Url.Content(Session["ImageUrl"].ToString())" width="100" height="100" alt="User"></div>
+                        <div class="col-sm name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Driver:<br /> @Session["LoggedUserName"].ToString()</div>
+                    </div>
+                    <div class="info-container">
+                        <div class="email"></div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="logo">
+                    <a href="" class="simple-text logo-normal">
+                        @Session["LoggedUserName"].ToString()
+                    </a>
+                </div>*@
+
+            <!--Assign the nav-bar items here-->
+            <div id="navbar_div" class="sidebar-wrapper">
+                <ul class="nav">
+                    <!--Side bar item Home Maps-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Home","DriverDash", new { area = "DriverHome"})">
+                            <i class="material-icons">home</i>
+                            <p>Home</p>
+                        </a>
+                    </li>
+
+                    <!--Side bar item Pending requests-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Pending","DriverDash", new { area = "DriverHome"})">
+                            <i class="material-icons">hourglass_empty</i>
+                            <p>Pending Requests</p>
+                        </a>
+                    </li>
+
+                    <!--Side bar for Accepted requests-->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("Accepted","DriverDash", new { area = "DriverHome"})">
+                            <i class="material-icons">hourglass_full</i>
+                            <p>Accepted Requests</p>
+                        </a>
+                    </li>
+
+                    <!--Side bar for Completed rides-->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("Completed","DriverDash", new { area = "DriverHome"})">
+                            <i class="material-icons">thumb_up</i>
+                            <p>Completed Rides</p>
+                        </a>
+                    </li>
+
+                    <!--Side bar for Cancelled rides-->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("Cancelled","DriverDash", new { area = "DriverHome"})">
+                            <i class="material-icons">cancel</i>
+                            <p>Cancelled</p>
+                        </a>
+                    </li>
+
+                    <!--Side bar for Vehicle Information-->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("VehicleInfo","DriverDash", new { area = "DriverHome"})">
+                            <i class="material-icons">directions_car</i>
+                            <p>Vehicle Information</p>
+                        </a>
+                    </li>
+
+                    <!--Side bar for Payment History-->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("Payment","DriverDash", new { area = "DriverHome"})">
+                            <i class="material-icons">payment</i>
+                            <p>Payment History</p>
+                        </a>
+                    </li>
+
+                    <!--Side bar for Profile-->
+                    <li class="nav-item ">
+                        <a class="nav-link" href="@Url.Action("ProfileInfo","DriverDash", new { area = "DriverHome"})">
+                            <i class="material-icons">account_circle</i>
+                            <p>Profile</p>
+                        </a>
+                    </li>
+
+                    <!--Side bar for Logout-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Logout", "Login", new { area = "DriverHome" })">
+                            <i class="material-icons">exit_to_app</i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+                <div class="container-fluid">
+
+                    <!--Toggle Navigation bar for the mobile responsive-->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <!--Body Content-->
+            <div class="content">
+                @RenderBody()
+            </div>
+
+            <!--Footer Element appear here-->
+            <footer class="footer">
+                <div class="container-fluid">
+
+                    <div class="copyright float-none" id="date">
+                        , made with <i class="material-icons">favorite</i> by
+                        <a href="https://www.facebook.com/iAbu94" target="_blank">iHacker2.0</a>
+                    </div>
+                </div>
+            </footer>
+            <script>
+                const x = new Date().getFullYear();
+                let date = document.getElementById('date');
+                date.innerHTML = '&copy; ' + x + date.innerHTML;
+            </script>
+        </div>
+    </div>
+
+
+
+
+    <!--   Core JS Files   -->
+    <script src="~/Areas/DriverHome/scripts/bootstrap-material-design.min.js"></script>
+    <script src="~/Areas/DriverHome/scripts/jquery.min.js"></script>
+    <script src="~/Areas/DriverHome/scripts/popper.min.js"></script>
+
+    <script src="https://unpkg.com/default-passive-events"></script>
+
+    <script src="~/Areas/DriverHome/scripts/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Chartist JS -->
+    <script src="~/Areas/DriverHome/scripts/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="~/Areas/DriverHome/scripts/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="~/Areas/DriverHome/scripts/material-dashboard.js?v=2.1.0"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('li.active').removeClass('active');
+            $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+        });
+
+    </script>
+
+</body>
+</html>

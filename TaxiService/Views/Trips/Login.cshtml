@@ -1,0 +1,74 @@
+﻿@model TaxiService.Models.ViewTripModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    FASTER. SAFER. SMARTER.
+                </h1>
+                <h5 class="text-white">
+                    We take out the hassle and bring back the joy of traveling.
+                </h5>
+                <p class="text-white link-nav"><a href="@Url.Action("Index","UserHome")">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("NewBooking","UserHome")"> Services</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+
+    <div class="container" style="max-width:800px;padding-left:200px;padding-right:200px;padding-top:50px;padding-bottom:50px">
+        @using (Html.BeginForm("ValidateTripLogin", "Trips", FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.tripId)
+            @Html.HiddenFor(x => x.VehicleType)
+            @Html.HiddenFor(x => x.TripDays)
+            @Html.HiddenFor(x => x.Time)
+            @Html.HiddenFor(x => x.Date)
+            <form id="formLogin">
+                <div class="form-group">
+
+                    @if (TempData["ValidateMessage"] != null)
+                    {
+                        <div class="row alert alert-danger">
+                            <br /><label style="color:red"> @TempData["ValidateMessage"].ToString()</label>
+                        </div>
+                    }
+                    <div class="row">
+                        @Html.TextBoxFor(x => x.UserName, new { type = "text", name = "UserName", @class = "form-control txt-field", placeholder = "Enter Email or Mobile Number", autocomplete = "on", required = "required" })
+                    </div>
+                    <label></label>
+                    <div class="row">
+                        <input type="password" name="Password" class="form-control txt-field" placeholder="Enter Password" required />
+                    </div>
+                    <label>&nbsp;</label>
+                    <div class="row">
+                        <div class="col-md-6" style="margin-top:10px">
+                            <a href="#"> Forgot Password</a>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn text-uppercase" type="submit" style="width:inherit;text-align:center; background-color:#FDB940;" required>Login</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            Don't have an Account..? Sign Up &nbsp;
+            <a href="@Url.Action("RegisterDriver", "Login", new { area = "DriverHome" })"> Driver</a>
+            &nbsp;or  &nbsp; <a href="@Url.Action("RegisterRider", "UserHome")">Rider</a>&nbsp; here.<br />
+        </div>
+
+    </div>
+</section>

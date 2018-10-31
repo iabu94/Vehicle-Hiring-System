@@ -1,0 +1,108 @@
+﻿@model IEnumerable<TaxiService.Models.TripDetaisTable>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    FASTER. SAFER. SMARTER.
+                </h1>
+                <h5 class="text-white">
+                    We take out the hassle and bring back the joy of traveling.
+                </h5>
+                <p class="text-white link-nav"><a href="@Url.Action("Index","UserHome")">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("NewBooking","UserHome")"> Services</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start Trips Area -->
+<section class="services-area pb-120">
+    <div class="container">
+        <div class="row" style="margin-bottom:30px">&nbsp;</div>
+        <div class="row section-title">
+            <h1>What Packages we offer to our trip plans</h1>
+            <p>Who are in extremely love with eGo friendly system.</p>
+        </div>
+        
+        @{ int counter = 0; }
+        <div class="row container">
+            @foreach (var item in Model)
+            {
+                if (counter != 0 && counter % 3 == 0)
+                {
+                    @:</div>
+                @:<div class="row container" style="margin-top:10px">
+            }
+
+                <div class="col col-md-4 col-sm-6 single-service" style="height: 472px;" id=@item.TripID onclick="clicked(this);">
+                    <div class="card" data-package-name="">
+                        <img src=@Url.Content(item.ImageUrl) class="img-thumbnail img-responsive">
+                    </div>
+                    <h4>@item.TripFrom to @item.TripTo</h4>
+                    <div class="row info">
+                        <div class="col-6">
+                            Duration<br />
+                            @item.DurationHr Hours
+                        </div>
+                        <div class="col-6">
+                            Distance<br />
+                            @item.DistanceKm KM
+                        </div>
+                    </div>
+                    <div class="col" style="margin-top:10px; background-color:black; color:white;height:30px">
+                        @item.CarPerDay LKR onwards
+                    </div>
+                </div>
+
+                counter++;
+            }
+        </div>
+
+    </div>
+</section>
+<!-- End services Area -->
+
+
+
+
+<div class="modal fade" id="popupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body site-theme-model" id="popupModalBodyDiv">
+                @*popupPV*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function clicked(item) {
+        var id = parseInt($(item).attr("id"));
+
+        var url = '@Url.Action("ViewTrip","Trips")?tripId=' + id;
+
+        window.open(url, '_blank').focus();
+
+        //$.ajax({
+        //    url: url,
+        //    type: 'POST',
+        //    data: { tripId: id },
+        //    success: function () {
+
+        //    },
+        //    error: function () {
+        //        alert("error");
+        //    }
+        //});
+    }
+
+
+</script>

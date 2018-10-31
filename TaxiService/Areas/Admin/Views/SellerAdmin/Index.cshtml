@@ -1,0 +1,169 @@
+﻿@model IEnumerable<TaxiService.Models.SellingVehicleDetail>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-users fa-lg"></i></li>
+    <li class="breadcrumb-item">Seller Admin</li>
+    <li class="breadcrumb-item"><a href="#">Active</a></li>
+</ul>
+
+<a class="btn btn-success" style="margin-bottom:10px" onclick="addView()"><i class="fa fa-plus"></i>Add Selling Vehicle</a><br />
+
+<table class="table">
+    <tr>
+        <th>
+            Vehicle Type
+        </th>
+        <th>
+            Brand
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Mileage
+        </th>
+        <th>
+            Model Year
+        </th>
+        <th>
+            Contact No
+        </th>
+        <th></th>
+    </tr>
+    @if (Model == null)
+    {
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellingHead)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleBrand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MileageKm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleModelYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                </td>
+                <td>
+                    <a class="btn btn-info" href="#" data-toggle="tooltip" data-placement="left" title="View" onclick="view(@item.SellingID)">
+                        <i class="fa fa-eye fa-lg"></i>
+                    </a>
+                    <a class="btn btn-success" href="#" data-toggle="tooltip" data-placement="top" title="Edit" onclick="editView(@item.SellingID)">
+                        <i class="fa fa-pencil fa-lg"></i>
+                    </a>
+                    <a class="btn btn-danger" href="#" data-toggle="tooltip" data-placement="right" title="Delete" onclick="deletePopup(@item.SellingID)">
+                        <i class="fa fa-trash-o fa-lg"></i>
+                    </a>
+                    <input type="hidden" id="hiddenSellId" />
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+<!--View Popoup Model-->
+<div class="modal fade" id="popupModal">
+    <div class="modal-dialog modal-lg"  >
+        <div class="modal-content">
+            <div class="modal-body site-theme-model" id="popupModalBodyDiv">
+                @*popupPV*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Delete Popup Model-->
+<div class="modal fade" id="deletePopupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header site-theme">
+                <h3 class="modal-title">Delete Selling Vehicle</h3>
+                <button data-dismiss="modal" class="close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body site-theme">
+                <span id="msg_confirm">Are you sure want to delete this Selling Vehicle..?</span>
+            </div>
+            <div class="modal-footer site-theme">
+                <a href="#" class="btn btn-danger" onclick="confirmDelete()">Confirm</a>
+                <a href="#" class="btn btn-success" data-dismiss="modal" onclick="cancel()">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var addView = function () {
+        var url = '@Url.Action("AddSellingVehicle", "SellerAdmin")';
+
+        $("#popupModalBodyDiv").load(url, function () {
+            $("#popupModal").modal('show');
+        })
+    }
+
+    var view = function (sellId) {
+        var url = '@Url.Action("ViewAddvertise", "SellerAdmin")?id=' + sellId;
+
+        $("#popupModalBodyDiv").load(url, function () {
+            $("#popupModal").modal('show');
+        })
+    }
+
+    var deletePopup = function (id) {
+
+        $("#hiddenSellId").val(id);
+        $("#deletePopupModal").modal('show');
+    }
+
+    var confirmDelete = function () {
+        var id = $("#hiddenSellId").val();
+        var url = '@Url.Action("DeleteAddvertise", "SellerAdmin")'
+
+        $.ajax({
+
+            type: "POST",
+            url: url,
+            data: { id: id },
+            success: function (result) {
+                $("#deletePopupModal").modal("hide");
+                window.location.href = '@Url.Action("Index")'
+            }
+        });
+    }
+
+    var editView = function (id) {
+        var url = '@Url.Action("EditAddvertise", "SellerAdmin")?id=' + id;
+
+        $("#popupModalBodyDiv").load(url, function () {
+            $("#popupModal").modal('show');
+        })
+    }
+
+</script>

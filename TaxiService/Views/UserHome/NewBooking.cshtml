@@ -1,0 +1,294 @@
+﻿@model TaxiService.Models.HomeBookingModel
+@{
+    ViewBag.Title = "NewBooking";
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+}
+<style>
+    .plan-trip {
+        padding: 60px;
+    }
+
+    .head {
+        font-size: 2rem;
+    }
+
+    #formHire {
+        margin-top: 15px;
+    }
+
+    .input-hidden {
+        position: center;
+    }
+
+    input[type=radio]:checked + label > img {
+        border: 1px solid #fff;
+        box-shadow: 0 0 3px 3px #FDB940;
+    }
+
+    /* Stuff after this is only to make things more pretty */
+    input[type=radio] + label > img {
+        border: 1px dashed #444;
+        width: 150px;
+        height: 150px;
+        transition: 500ms all;
+    }
+
+    input[type=radio]:checked + label > img {
+        transform: rotateZ(-5deg) rotateX(5deg);
+    }
+
+    input.form-control {
+        background: #F9F9F9;
+    }
+
+    /*
+         | //lea.verou.me/css3patterns
+         | Because white bgs are boring.
+        */
+</style>
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    FASTER. SAFER. SMARTER.
+                </h1>
+                <h5 class="text-white">
+                    We take out the hassle and bring back the joy of traveling.
+                </h5>
+                <p class="text-white link-nav"><a href="@Url.Action("Index","UserHome")">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("NewBooking","UserHome")"> Services</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<section class="plan-trip" style="padding:60px">
+    <div class="container" style="max-width:800px;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px">
+        <div class="head">
+            <h1>Plan your trip</h1>
+        </div>
+        @using (Html.BeginForm("BookingDetails", "UserHome", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <form id="formHire">
+                @Html.HiddenFor(x => x.Name)
+                <div class="form-group row" style="padding-top:15px;">
+                    <div id="choose-type" class="col-sm-10 div-inline">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(x => x.TripType, "One Way Trip", new { @class = "", @checked = "checked", id = "oneWay", Value = "1", required = "required" })
+                            @Html.LabelFor(x => x.TripType, "One Way Trip")
+                        </label>
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(x => x.TripType, "Return Trip", new { @class = "", id = "oneWay", Value = "2", required = "required" })
+                            @Html.LabelFor(x => x.TripType, "Return Trip")
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-top:10px;">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.LocationFrom, "Pick-up Location :", new { @class = "required col-form-label required" })
+                            @Html.TextBoxFor(x => x.LocationFrom, new { @type = "text", @class = "form-control", id = "location_pickup", onblur = "updateValues()" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.LocationTo, "Drop Location :", new { @class = "required col-form-label required", })
+                            @Html.TextBoxFor(x => x.LocationTo, new { @type = "text", @class = "form-control", id = "location_drop", onblur = "updateValues()" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-top:10px;">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="recipient-name" class="required col-form-label ">Pick-up Date :</label>
+                            @Html.TextBoxFor(x => x.PickUpDate, new { Value = Model.PickUpTime.ToString("dd/MM/yyyy"), type = "text", @class = "form-control", id = "datetimepicker4" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="recipient-name" class="required col-form-label">Pick-up Time :</label>
+                            @Html.TextBoxFor(x => x.PickUpTime, new { Value = Model.PickUpTime.ToString("hh:mm tt"), type = "text", @class = "form-control", id = "timePickup" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-top:15px;">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Select a Vehicle</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="vehicle_type">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.RadioButtonFor(x => x.VehicleType, "NanoCar", new { @class = "", @checked = "checked", id = "type1", Value = "1", required = "required" })
+                                <label for="type1">
+                                    <img src="~/Images/TaxiType001.png"
+                                         alt="Type 1 car" />
+                                </label>
+                                <p id="amount1" style="padding-top:5px; text-align:center"></p>
+                                @*@if (Model.LocationFrom == null || Model.LocationTo == null || Model.DistanceKm == 0)
+                                {
+                                    Model.HirePrice = 0;
+                                    <p id="amount1" style="padding-top:5px; text-align:center">Rs. 0</p>
+                                }
+                                else if (Model.DistanceKm <= 1)
+                                {
+                                    Model.HirePrice = 150;
+                                    <p style="padding-top:5px; text-align:center">Rs. 150.00</p>
+                                }
+                                else if (Model.DistanceKm != 0)
+                                {
+                                    float price = ((Model.DistanceKm - 1) * 50 + 150);
+                                    Model.HirePrice = price;
+                                    <p style="padding-top:5px; text-align:center">Rs. @Math.Round(Convert.ToDecimal(price), 2)</p>
+                                }*@
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.RadioButtonFor(x => x.VehicleType, "Car", new { @class = "", id = "type2", Value = "2", required = "required" })
+                                <label for="type2">
+                                    <img src="~/Images/TaxiType002.png"
+                                         alt="Type 2 car" />
+                                </label>
+                                <p id="amount2" style="padding-top:5px; text-align:center"></p>
+                                @*@if (Model.LocationFrom == null || Model.LocationTo == null)
+                                {
+                                    Model.HirePrice = 0;
+                                    <p id="amount3" style="padding-top:5px; text-align:center">Rs. 0</p>
+                                }
+                                else if (Model.DistanceKm <= 1)
+                                {
+                                    Model.HirePrice = 200;
+                                    <p style="padding-top:5px; text-align:center">Rs. 200.00</p>
+                                }
+                                else
+                                {
+                                    float price1 = ((Model.DistanceKm - 1) * 50 + 200);
+                                    Model.HirePrice = price1;
+                                    <p style="padding-top:5px; text-align:center">Rs. @Math.Round(Convert.ToDecimal(price1), 2)</p>
+                                }*@
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.RadioButtonFor(x => x.VehicleType, "Van", new { @class = "", id = "type3", Value = "3", required = "required" })
+                                <label for="type3">
+                                    <img src="~/Images/TaxiType003.png"
+                                         alt="Type 3 car" />
+                                </label>
+                                <p id="amount3" style="padding-top:5px; text-align:center"></p>
+                                @*@if (Model.LocationFrom == null || Model.LocationTo == null)
+                                {
+                                    Model.HirePrice = 0;
+                                    <p style="padding-top:5px; text-align:center">Rs. 0</p>
+                                }
+                                else if (Model.DistanceKm <= 8)
+                                {
+                                    Model.HirePrice = 1000;
+                                    <p style="padding-top:5px; text-align:center">Rs. 1000.00</p>
+                                }
+                                else
+                                {
+                                    float price2 = ((Model.DistanceKm - 8) * 50 + 1000);
+                                    Model.HirePrice = price2;
+                                    <p style="padding-top:5px; text-align:center">Rs. @Math.Round(Convert.ToDecimal(price2), 2)</p>
+                                }*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" style="padding-top:15px">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <p>
+                                <span style="font-weight:bold">* Please note: </span>The estimated fare may vary subject to extrinsic factors such as route taken, traffic and weather etc.
+                                Additionally, the estimate does not include charges for special features within the service (app) which will be duly informed when the booking is made.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-top:15px;">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.Email, new { type = "text", @class = "form-control", id = "txtEmail", placeholder = "Email", required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="tel" min="9" max="10" name="MobileNumber" class="form-control" id="txtMobile" placeholder="Mobile Number" required />
+                            @*@Html.TextBoxFor(x => x.MobileNumber, new { type = "text", @class = "form-control", id = "txtMobile", placeholder = "Mobile Number", required = "required" })*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="padding-top:15px;">
+                    <div class="col-md-6">
+
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn text-uppercase" type="submit" style="width:inherit;text-align:center; background-color:#FDB940;" required>Confirm Booking</button>
+                        @*<a type="submit" class="primary-btn text-uppercase" style="width:inherit; text-align:center; background-color:#FDB940;">Confirm Booking</a>*@
+                    </div>
+                </div>
+
+            </form>
+        }
+    </div>
+</section>
+
+<script>
+    
+    window.onload = function () {
+        updateValues();
+    }
+
+
+    function locatePlaces() {
+
+        var autocomplete_from = new google.maps.places.Autocomplete(document.getElementById('location_pickup'));
+        autocomplete_from.setComponentRestrictions(
+            { 'country': ['lk'] });
+
+        var autocomplete_to = new google.maps.places.Autocomplete(document.getElementById('location_drop'));
+        autocomplete_to.setComponentRestrictions(
+            { 'country': ['lk'] });
+    };
+
+    function updateValues() {
+        var location_from = document.getElementById('location_pickup').value;
+        var location_to = document.getElementById('location_drop').value;
+
+        var url = '@Url.Action("CalAmount", "UserHome")'
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: { from: location_from, to: location_to },
+            success: function (data) {
+                $('#amount1').text('Rs. ' + data.NanoCar);
+                $('#amount2').text('Rs. ' + data.Car);
+                $('#amount3').text('Rs. ' + data.Van);
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    };
+
+</script>

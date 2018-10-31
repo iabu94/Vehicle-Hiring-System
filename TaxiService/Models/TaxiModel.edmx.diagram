@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9f13fee0caf349059d052fb30ca572e4" Name="Diagram1">
+        <EntityTypeShape EntityType="TaxiServiceModel.AdminDetailsTable" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="TaxiServiceModel.DriverDetailsTable" Width="1.5" PointX="2.125" PointY="0.5" />
+        <EntityTypeShape EntityType="TaxiServiceModel.HireState" Width="1.5" PointX="3.75" PointY="0.5" />
+        <EntityTypeShape EntityType="TaxiServiceModel.LocationsTable" Width="1.5" PointX="5.375" PointY="2" />
+        <EntityTypeShape EntityType="TaxiServiceModel.PaymentModeTable" Width="1.5" PointX="5.375" PointY="0.5" />
+        <EntityTypeShape EntityType="TaxiServiceModel.PaymentStatusTable" Width="1.5" PointX="10.25" PointY="2" />
+        <EntityTypeShape EntityType="TaxiServiceModel.RideDetailsTable" Width="1.5" PointX="3.75" PointY="2" />
+        <EntityTypeShape EntityType="TaxiServiceModel.RiderDetailsTable" Width="1.5" PointX="0.5" PointY="3.375" />
+        <EntityTypeShape EntityType="TaxiServiceModel.RideStatusTable" Width="1.5" PointX="7" PointY="0.5" />
+        <EntityTypeShape EntityType="TaxiServiceModel.SellingVehicleDetail" Width="1.5" PointX="8.625" PointY="2" />
+        <EntityTypeShape EntityType="TaxiServiceModel.SellingVehicleImageTable" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TaxiServiceModel.TripDetaisTable" Width="1.5" PointX="7" PointY="4.25" />
+        <EntityTypeShape EntityType="TaxiServiceModel.TripsTable" Width="1.5" PointX="10.25" PointY="3.5" />
+        <EntityTypeShape EntityType="TaxiServiceModel.UserLoginDetail" Width="1.5" PointX="7" PointY="2" />
+        <EntityTypeShape EntityType="TaxiServiceModel.UserStatusTable" Width="1.5" PointX="8.625" PointY="0.5" />
+        <EntityTypeShape EntityType="TaxiServiceModel.UserType" Width="1.5" PointX="10.25" PointY="0.5" />
+        <EntityTypeShape EntityType="TaxiServiceModel.VehicleType" Width="1.5" PointX="8.625" PointY="5.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

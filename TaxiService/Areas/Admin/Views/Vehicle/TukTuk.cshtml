@@ -1,0 +1,180 @@
+﻿@model TaxiService.Models.ViewModels
+
+@{
+    ViewBag.Title = "TukTuk";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+<link href="~/Content/common.css" rel="stylesheet" />
+
+<ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-car fa-lg"></i></li>
+    <li class="breadcrumb-item">Vehicles</li>
+    <li class="breadcrumb-item"><a href="#">TukTuk</a></li>
+</ul>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <h3 class="tile-title">Add TukTuk</h3>
+            <div class="tile-body">
+                <a class="btn btn-success" style="margin-bottom:10px" onclick="addView()"><i class="fa fa-plus"></i>Add New</a><br />
+                <table id="categoryTable" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Vehicle Number</th>
+                            <th>Type</th>
+                            <th>Brand</th>
+                            <th>IsAvailable</th>
+                            <th>Owner</th>
+                            <th class="col-sm-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.VehicleList != null)
+                        {
+                            foreach (var item in Model.VehicleList)
+                            {
+                                <tr row_@item.VehicleID>
+                                    <td>@item.VehicleNumber</td>
+                                    @*<td>@item.VehicleType</td>*@
+                                    <td>@item.VehicleBrand</td>
+                                    <td>@item.IsAvailable</td>
+                                    <td>@item.VehicleOwner</td>
+
+                                    <td>
+                                        <a class="btn btn-info" href="#" data-toggle="tooltip" data-placement="left" title="View" onclick="view(@item.VehicleID)">
+                                            <i class="fa fa-eye fa-lg"></i>
+                                        </a>
+                                    
+                                        <a class="btn btn-success" href="#" data-toggle="tooltip" data-placement="top" title="Edit" onclick="editView(@item.VehicleID)">
+                                            <i class="fa fa-pencil fa-lg"></i>
+                                        </a>
+                                   
+                                        <a class="btn btn-danger" href="#" data-toggle="tooltip" data-placement="right" title="Delete" onclick="deletePopup(@item.VehicleID)">
+                                            <i class="fa fa-trash-o fa-lg"></i>
+                                        </a>
+                                        <input type="hidden" id="hiddenVehicleId" />
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>No data available</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add View Popup Modal-->
+<div class="modal fade" id="popupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body site-theme-model" id="popupModalBodyDiv">
+                @*popupPV*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Delete Popup Model-->
+<div class="modal fade" id="deletePopupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header site-theme">
+                <h3 class="modal-title">Delete Vehicle</h3>
+                <button data-dismiss="modal" class="close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body site-theme">
+                <span>Are you sure want to delete this ?</span>
+            </div>
+            <div class="modal-footer site-theme">
+                <a href="#" class="btn btn-danger" onclick="deleteConfirm()">Confirm</a>
+                <a href="#" class="btn btn-success" data-dismiss="modal" onclick="cancel()">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Success message popup modal-->
+<div class="modal fade" id="PopupSuccessModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header site-theme">
+                <h3 class="modal-title">Added Success</h3>
+                <button data-dismiss="modal" class="close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-lg-2"><i class="fa fa-check-circle fa-3x fa-fw text-success"></i></div>
+                <div class="col-lg-10 pull-right" style="font-size:larger">Vehicle Details Added Successfully..</div>
+            </div>
+            <div class="modal-footer site-theme">
+                <a href="#" class="btn btn-success" data-dismiss="modal">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <script>
+
+        $("#PopupSuccessModal").modal('show');
+
+    </script>
+}
+
+<script>
+
+    //call the add view modal
+    var addView = function () {
+        var url = '@Url.Action("AddTukTuk", "Vehicle")';
+
+        $("#popupModalBodyDiv").load(url, function () {
+            $("#popupModal").modal('show');
+        })
+    }
+
+    var view = function (vehicleId) {
+        var url = '@Url.Action("ViewVehicle", "Vehicle")?vehicleId=' + vehicleId;
+
+        $("#popupModalBodyDiv").load(url, function () {
+            $("#popupModal").modal('show');
+        })
+    }
+
+    var editView = function (vehicleId) {
+        var url = '@Url.Action("EditVehicle", "Vehicle")?vehicleId=' + vehicleId;
+
+        $("#popupModalBodyDiv").load(url, function () {
+            $("#popupModal").modal('show');
+        })
+    }
+
+    var deletePopup = function (vehicleId) {
+
+        $("#hiddenVehicleId").val(vehicleId);
+        $("#deletePopupModal").modal('show');
+    }
+
+    var deleteConfirm = function () {
+        var vehicleId = $("#hiddenVehicleId").val();
+        var url = '@Url.Action("DeleteVehicle","Vehicle")'
+
+        $.ajax({
+
+            type: "POST",
+            url: url,
+            data: { vehicleId: vehicleId },
+            success: function (result) {
+                $("#deletePopupModal").modal("hide");
+                window.location.href = '@Url.Action("TukTuk")'
+            }
+        });;
+    }
+
+</script>

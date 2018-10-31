@@ -1,0 +1,43 @@
+﻿@model TaxiService.Models.Vehicle
+@{
+
+    Layout = null;
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">Edit Vehicle</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<div class="site-theme">
+    @using (Html.BeginForm("EditVehicle", "Vehicle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <form id="formEV">
+            <div style="padding-right:65px;padding-left:65px">
+                @Html.HiddenFor(model => model.DriverID)
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Number")
+                    @Html.TextBoxFor(model => model.VehicleNumber, new { @class = "form-control", @style = "float:right" })
+                </div>
+                @*<div class="navbar-form div-row">
+                    @Html.Label("Vehicle Type")
+                    @Html.TextBoxFor(model => model.VehicleType, new { @class = "form-control", @style = "float:right", @required = "required" })
+                </div>*@
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Brand")
+                    @Html.TextBoxFor(model => model.VehicleBrand, new { @class = "form-control", @style = "float:right", @required = "required" })
+                </div>
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Owner")
+                    @Html.TextBoxFor(model => model.VehicleOwner, new { @class = "form-control", @style = "float:right", @required = "required" })
+                </div>
+            </div>
+            <div class="modal-footer site-theme">
+                <button type="submit" class="btn btn-success" required>Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    }
+</div>

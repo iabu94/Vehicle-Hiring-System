@@ -1,0 +1,26 @@
+﻿@model TaxiService.Areas.Admin.Models.ApproveTripModel
+
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">Add Rider</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<div class="site-theme">
+    @using (Html.BeginForm("ApproveTrip", "Trip", FormMethod.Post))
+    {
+        @Html.HiddenFor(model=>model.TripID)
+    <div class="form-horizontal">
+        <div style="padding-right:65px;padding-left:65px">
+            <div class="navbar-form div-row">
+                <label>Assign a driver</label> 
+                    @Html.DropDownList("DriverID", (List<SelectListItem>)ViewBag.DriverList, "--Assign Driver--", new { @class = "form-control", @style = "float:right;width:300px" })
+              
+            </div>
+            <div class="modal-footer site-theme">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-success" type="submit" required>Submit</button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TaxiServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminDetailsTable">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminCode" Type="varchar" MaxLength="10" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="int" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="UserImageUrl" Type="varchar" MaxLength="200" />
+          <Property Name="RegisteredDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DriverDetailsTable">
+          <Key>
+            <PropertyRef Name="DriverID" />
+          </Key>
+          <Property Name="DriverID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverCode" Type="varchar" MaxLength="10" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="CurrentLocation" Type="varchar" MaxLength="200" />
+          <Property Name="UserImageUrl" Type="varchar" MaxLength="200" />
+          <Property Name="RegisteredDate" Type="datetime" />
+          <Property Name="VehicleModel" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleBrand" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleYear" Type="varchar" MaxLength="5" />
+          <Property Name="VehicleColor" Type="varchar" MaxLength="20" />
+          <Property Name="VehicleNumber" Type="varchar" MaxLength="20" />
+          <Property Name="LicenseNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="IsOnline" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="VehicleType" Type="int" />
+        </EntityType>
+        <EntityType Name="HireState">
+          <Key>
+            <PropertyRef Name="HireStatusID" />
+          </Key>
+          <Property Name="HireStatusID" Type="int" Nullable="false" />
+          <Property Name="HireStatus" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocationsTable">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MainCity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Region" Type="varchar" MaxLength="50" />
+          <Property Name="Population" Type="varchar" MaxLength="50" />
+          <Property Name="Latitude" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Longtitude" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentModeTable">
+          <Key>
+            <PropertyRef Name="PaymentModeID" />
+          </Key>
+          <Property Name="PaymentModeID" Type="int" Nullable="false" />
+          <Property Name="PaymentMode" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PaymentStatusTable">
+          <Key>
+            <PropertyRef Name="PaymentStatusID" />
+          </Key>
+          <Property Name="PaymentStatusID" Type="bit" Nullable="false" />
+          <Property Name="PaymentStatus" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="RideDetailsTable">
+          <Key>
+            <PropertyRef Name="RideID" />
+          </Key>
+          <Property Name="RideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DriverID" Type="int" Nullable="false" />
+          <Property Name="PickupAddress" Type="varchar" MaxLength="500" />
+          <Property Name="DropAddress" Type="varchar" MaxLength="500" />
+          <Property Name="PickupDate" Type="date" />
+          <Property Name="PickupTime" Type="time" Precision="7" />
+          <Property Name="Distance" Type="varchar" MaxLength="50" />
+          <Property Name="Duration" Type="varchar" MaxLength="20" />
+          <Property Name="RideStatus" Type="int" />
+          <Property Name="PaymentStatus" Type="bit" />
+          <Property Name="PayDriver" Type="int" />
+          <Property Name="PaymentMode" Type="int" />
+          <Property Name="Amount" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RiderDetailsTable">
+          <Key>
+            <PropertyRef Name="RiderID" />
+          </Key>
+          <Property Name="RiderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RiderCode" Type="varchar" MaxLength="10" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CurrentLocation" Type="varchar" MaxLength="200" />
+          <Property Name="RegisteredDate" Type="datetime" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="RideStatusTable">
+          <Key>
+            <PropertyRef Name="RideStatusID" />
+          </Key>
+          <Property Name="RideStatusID" Type="int" Nullable="false" />
+          <Property Name="RideStatus" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SellingVehicleDetail">
+          <Key>
+            <PropertyRef Name="SellingID" />
+          </Key>
+          <Property Name="SellingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SellingHead" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MileageKm" Type="int" Nullable="false" />
+          <Property Name="Price" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="VehicleDescription" Type="text" Nullable="false" />
+          <Property Name="VehicleBrand" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleModel" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleModelYear" Type="int" />
+          <Property Name="Condition" Type="varchar" MaxLength="50" />
+          <Property Name="EngineCapacity" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNumber" Type="int" />
+          <Property Name="UploadedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SellingVehicleImageTable">
+          <Key>
+            <PropertyRef Name="SVITID" />
+          </Key>
+          <Property Name="SVITID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SellingID" Type="int" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TripDetaisTable">
+          <Key>
+            <PropertyRef Name="TripID" />
+          </Key>
+          <Property Name="TripID" Type="int" Nullable="false" />
+          <Property Name="TripFrom" Type="varchar" MaxLength="100" />
+          <Property Name="TripTo" Type="varchar" MaxLength="100" />
+          <Property Name="VanPerDay" Type="int" Nullable="false" />
+          <Property Name="BusPerDay" Type="int" Nullable="false" />
+          <Property Name="VanPerKm" Type="int" />
+          <Property Name="BusPerKm" Type="int" />
+          <Property Name="VanPerHr" Type="int" />
+          <Property Name="BusPerHr" Type="int" />
+          <Property Name="DistanceKm" Type="varchar" MaxLength="10" />
+          <Property Name="DurationHr" Type="varchar" MaxLength="10" />
+          <Property Name="CarPerDay" Type="int" Nullable="false" />
+          <Property Name="CarPerKm" Type="int" />
+          <Property Name="CarPerHr" Type="int" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TripsTable">
+          <Key>
+            <PropertyRef Name="TripID" />
+          </Key>
+          <Property Name="TripID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DriverID" Type="int" />
+          <Property Name="TripDetailsTableID" Type="int" Nullable="false" />
+          <Property Name="PickupDate" Type="date" />
+          <Property Name="PickupTime" Type="time" Precision="7" />
+          <Property Name="TripStatus" Type="int" />
+          <Property Name="PaymentStatus" Type="bit" />
+          <Property Name="PayDriver" Type="int" />
+          <Property Name="PaymentMode" Type="int" />
+          <Property Name="Amount" Type="varchar" MaxLength="10" />
+          <Property Name="RequestedBy" Type="varchar" MaxLength="50" />
+          <Property Name="RequesterContact" Type="varchar" MaxLength="15" />
+          <Property Name="TripDetail" Type="varchar" MaxLength="100" />
+          <Property Name="DriverName" Type="varchar" MaxLength="50" />
+          <Property Name="DriverContact" Type="varchar" MaxLength="15" />
+          <Property Name="VehicleType" Type="int" />
+          <Property Name="TripDays" Type="int" />
+        </EntityType>
+        <EntityType Name="UserLoginDetail">
+          <Key>
+            <PropertyRef Name="UserLoginID" />
+          </Key>
+          <Property Name="UserLoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTableID" Type="int" Nullable="false" />
+          <Property Name="UserLoginEmail" Type="varchar" MaxLength="100" />
+          <Property Name="UserLoginMobile" Type="int" Nullable="false" />
+          <Property Name="UserLoginPassword" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserStatusTable">
+          <Key>
+            <PropertyRef Name="UserStatusID" />
+          </Key>
+          <Property Name="UserStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserStatusVale" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehicleType">
+          <Key>
+            <PropertyRef Name="VehicleTypeID" />
+          </Key>
+          <Property Name="VehicleTypeID" Type="int" Nullable="false" />
+          <Property Name="VehicleTypeName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MaxPassengers" Type="int" Nullable="false" />
+          <Property Name="MinDistanceKm" Type="int" />
+          <Property Name="BasicFareAmount" Type="int" Nullable="false" />
+          <Property Name="PerKmFare" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TaxiServiceModelStoreContainer">
+          <EntitySet Name="AdminDetailsTable" EntityType="Self.AdminDetailsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriverDetailsTable" EntityType="Self.DriverDetailsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HireState" EntityType="Self.HireState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationsTable" EntityType="Self.LocationsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentModeTable" EntityType="Self.PaymentModeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentStatusTable" EntityType="Self.PaymentStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RideDetailsTable" EntityType="Self.RideDetailsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiderDetailsTable" EntityType="Self.RiderDetailsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RideStatusTable" EntityType="Self.RideStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellingVehicleDetail" EntityType="Self.SellingVehicleDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellingVehicleImageTable" EntityType="Self.SellingVehicleImageTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TripDetaisTable" EntityType="Self.TripDetaisTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TripsTable" EntityType="Self.TripsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLoginDetail" EntityType="Self.UserLoginDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserStatusTable" EntityType="Self.UserStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TaxiServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TaxiServiceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminDetailsTables" EntityType="TaxiServiceModel.AdminDetailsTable" />
+          <EntitySet Name="DriverDetailsTables" EntityType="TaxiServiceModel.DriverDetailsTable" />
+          <EntitySet Name="HireStates" EntityType="TaxiServiceModel.HireState" />
+          <EntitySet Name="LocationsTables" EntityType="TaxiServiceModel.LocationsTable" />
+          <EntitySet Name="PaymentModeTables" EntityType="TaxiServiceModel.PaymentModeTable" />
+          <EntitySet Name="PaymentStatusTables" EntityType="TaxiServiceModel.PaymentStatusTable" />
+          <EntitySet Name="RideDetailsTables" EntityType="TaxiServiceModel.RideDetailsTable" />
+          <EntitySet Name="RiderDetailsTables" EntityType="TaxiServiceModel.RiderDetailsTable" />
+          <EntitySet Name="RideStatusTables" EntityType="TaxiServiceModel.RideStatusTable" />
+          <EntitySet Name="SellingVehicleDetails" EntityType="TaxiServiceModel.SellingVehicleDetail" />
+          <EntitySet Name="SellingVehicleImageTables" EntityType="TaxiServiceModel.SellingVehicleImageTable" />
+          <EntitySet Name="TripDetaisTables" EntityType="TaxiServiceModel.TripDetaisTable" />
+          <EntitySet Name="TripsTables" EntityType="TaxiServiceModel.TripsTable" />
+          <EntitySet Name="UserLoginDetails" EntityType="TaxiServiceModel.UserLoginDetail" />
+          <EntitySet Name="UserStatusTables" EntityType="TaxiServiceModel.UserStatusTable" />
+          <EntitySet Name="UserTypes" EntityType="TaxiServiceModel.UserType" />
+          <EntitySet Name="VehicleTypes" EntityType="TaxiServiceModel.VehicleType" />
+        </EntityContainer>
+        <EntityType Name="AdminDetailsTable">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserImageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RegisteredDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DriverDetailsTable">
+          <Key>
+            <PropertyRef Name="DriverID" />
+          </Key>
+          <Property Name="DriverID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UserImageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RegisteredDate" Type="DateTime" Precision="3" />
+          <Property Name="VehicleModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleYear" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleColor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LicenseNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="IsOnline" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="VehicleType" Type="Int32" />
+        </EntityType>
+        <EntityType Name="HireState">
+          <Key>
+            <PropertyRef Name="HireStatusID" />
+          </Key>
+          <Property Name="HireStatusID" Type="Int32" Nullable="false" />
+          <Property Name="HireStatus" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LocationsTable">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MainCity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Population" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Longtitude" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PaymentModeTable">
+          <Key>
+            <PropertyRef Name="PaymentModeID" />
+          </Key>
+          <Property Name="PaymentModeID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PaymentStatusTable">
+          <Key>
+            <PropertyRef Name="PaymentStatusID" />
+          </Key>
+          <Property Name="PaymentStatusID" Type="Boolean" Nullable="false" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RideDetailsTable">
+          <Key>
+            <PropertyRef Name="RideID" />
+          </Key>
+          <Property Name="RideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="DriverID" Type="Int32" Nullable="false" />
+          <Property Name="PickupAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DropAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PickupDate" Type="DateTime" Precision="0" />
+          <Property Name="PickupTime" Type="Time" Precision="7" />
+          <Property Name="Distance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duration" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RideStatus" Type="Int32" />
+          <Property Name="PaymentStatus" Type="Boolean" />
+          <Property Name="PayDriver" Type="Int32" />
+          <Property Name="PaymentMode" Type="Int32" />
+          <Property Name="Amount" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RiderDetailsTable">
+          <Key>
+            <PropertyRef Name="RiderID" />
+          </Key>
+          <Property Name="RiderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RiderCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RegisteredDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RideStatusTable">
+          <Key>
+            <PropertyRef Name="RideStatusID" />
+          </Key>
+          <Property Name="RideStatusID" Type="Int32" Nullable="false" />
+          <Property Name="RideStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SellingVehicleDetail">
+          <Key>
+            <PropertyRef Name="SellingID" />
+          </Key>
+          <Property Name="SellingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SellingHead" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MileageKm" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleModelYear" Type="Int32" />
+          <Property Name="Condition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EngineCapacity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="Int32" />
+          <Property Name="UploadedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SellingVehicleImageTable">
+          <Key>
+            <PropertyRef Name="SVITID" />
+          </Key>
+          <Property Name="SVITID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SellingID" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TripDetaisTable">
+          <Key>
+            <PropertyRef Name="TripID" />
+          </Key>
+          <Property Name="TripID" Type="Int32" Nullable="false" />
+          <Property Name="TripFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TripTo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VanPerDay" Type="Int32" Nullable="false" />
+          <Property Name="BusPerDay" Type="Int32" Nullable="false" />
+          <Property Name="VanPerKm" Type="Int32" />
+          <Property Name="BusPerKm" Type="Int32" />
+          <Property Name="VanPerHr" Type="Int32" />
+          <Property Name="BusPerHr" Type="Int32" />
+          <Property Name="DistanceKm" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DurationHr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CarPerDay" Type="Int32" Nullable="false" />
+          <Property Name="CarPerKm" Type="Int32" />
+          <Property Name="CarPerHr" Type="Int32" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TripsTable">
+          <Key>
+            <PropertyRef Name="TripID" />
+          </Key>
+          <Property Name="TripID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="DriverID" Type="Int32" />
+          <Property Name="TripDetailsTableID" Type="Int32" Nullable="false" />
+          <Property Name="PickupDate" Type="DateTime" Precision="0" />
+          <Property Name="PickupTime" Type="Time" Precision="7" />
+          <Property Name="TripStatus" Type="Int32" />
+          <Property Name="PaymentStatus" Type="Boolean" />
+          <Property Name="PayDriver" Type="Int32" />
+          <Property Name="PaymentMode" Type="Int32" />
+          <Property Name="Amount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RequestedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RequesterContact" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="TripDetail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DriverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DriverContact" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleType" Type="Int32" />
+          <Property Name="TripDays" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserLoginDetail">
+          <Key>
+            <PropertyRef Name="UserLoginID" />
+          </Key>
+          <Property Name="UserLoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTableID" Type="Int32" Nullable="false" />
+          <Property Name="UserLoginEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserLoginMobile" Type="Int32" Nullable="false" />
+          <Property Name="UserLoginPassword" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserStatusTable">
+          <Key>
+            <PropertyRef Name="UserStatusID" />
+          </Key>
+          <Property Name="UserStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserStatusVale" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VehicleType">
+          <Key>
+            <PropertyRef Name="VehicleTypeID" />
+          </Key>
+          <Property Name="VehicleTypeID" Type="Int32" Nullable="false" />
+          <Property Name="VehicleTypeName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MaxPassengers" Type="Int32" Nullable="false" />
+          <Property Name="MinDistanceKm" Type="Int32" />
+          <Property Name="BasicFareAmount" Type="Int32" Nullable="false" />
+          <Property Name="PerKmFare" Type="Int32" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TaxiServiceModelStoreContainer" CdmEntityContainer="TaxiServiceEntities">
+          <EntitySetMapping Name="AdminDetailsTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.AdminDetailsTable">
+              <MappingFragment StoreEntitySet="AdminDetailsTable">
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="UserImageUrl" ColumnName="UserImageUrl" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="AdminCode" ColumnName="AdminCode" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DriverDetailsTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.DriverDetailsTable">
+              <MappingFragment StoreEntitySet="DriverDetailsTable">
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LicenseNo" ColumnName="LicenseNo" />
+                <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+                <ScalarProperty Name="VehicleColor" ColumnName="VehicleColor" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="VehicleBrand" ColumnName="VehicleBrand" />
+                <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="UserImageUrl" ColumnName="UserImageUrl" />
+                <ScalarProperty Name="CurrentLocation" ColumnName="CurrentLocation" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DriverCode" ColumnName="DriverCode" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HireStates">
+            <EntityTypeMapping TypeName="TaxiServiceModel.HireState">
+              <MappingFragment StoreEntitySet="HireState">
+                <ScalarProperty Name="HireStatus" ColumnName="HireStatus" />
+                <ScalarProperty Name="HireStatusID" ColumnName="HireStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationsTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.LocationsTable">
+              <MappingFragment StoreEntitySet="LocationsTable">
+                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="MainCity" ColumnName="MainCity" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentModeTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.PaymentModeTable">
+              <MappingFragment StoreEntitySet="PaymentModeTable">
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="PaymentModeID" ColumnName="PaymentModeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentStatusTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.PaymentStatusTable">
+              <MappingFragment StoreEntitySet="PaymentStatusTable">
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RideDetailsTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.RideDetailsTable">
+              <MappingFragment StoreEntitySet="RideDetailsTable">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="PayDriver" ColumnName="PayDriver" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="RideStatus" ColumnName="RideStatus" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="PickupTime" ColumnName="PickupTime" />
+                <ScalarProperty Name="PickupDate" ColumnName="PickupDate" />
+                <ScalarProperty Name="DropAddress" ColumnName="DropAddress" />
+                <ScalarProperty Name="PickupAddress" ColumnName="PickupAddress" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RideID" ColumnName="RideID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiderDetailsTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.RiderDetailsTable">
+              <MappingFragment StoreEntitySet="RiderDetailsTable">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="CurrentLocation" ColumnName="CurrentLocation" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RiderCode" ColumnName="RiderCode" />
+                <ScalarProperty Name="RiderID" ColumnName="RiderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RideStatusTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.RideStatusTable">
+              <MappingFragment StoreEntitySet="RideStatusTable">
+                <ScalarProperty Name="RideStatus" ColumnName="RideStatus" />
+                <ScalarProperty Name="RideStatusID" ColumnName="RideStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellingVehicleDetails">
+            <EntityTypeMapping TypeName="TaxiServiceModel.SellingVehicleDetail">
+              <MappingFragment StoreEntitySet="SellingVehicleDetail">
+                <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EngineCapacity" ColumnName="EngineCapacity" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="VehicleModelYear" ColumnName="VehicleModelYear" />
+                <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+                <ScalarProperty Name="VehicleBrand" ColumnName="VehicleBrand" />
+                <ScalarProperty Name="VehicleDescription" ColumnName="VehicleDescription" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="MileageKm" ColumnName="MileageKm" />
+                <ScalarProperty Name="SellingHead" ColumnName="SellingHead" />
+                <ScalarProperty Name="SellingID" ColumnName="SellingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellingVehicleImageTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.SellingVehicleImageTable">
+              <MappingFragment StoreEntitySet="SellingVehicleImageTable">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="SellingID" ColumnName="SellingID" />
+                <ScalarProperty Name="SVITID" ColumnName="SVITID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TripDetaisTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.TripDetaisTable">
+              <MappingFragment StoreEntitySet="TripDetaisTable">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="CarPerHr" ColumnName="CarPerHr" />
+                <ScalarProperty Name="CarPerKm" ColumnName="CarPerKm" />
+                <ScalarProperty Name="CarPerDay" ColumnName="CarPerDay" />
+                <ScalarProperty Name="DurationHr" ColumnName="DurationHr" />
+                <ScalarProperty Name="DistanceKm" ColumnName="DistanceKm" />
+                <ScalarProperty Name="BusPerHr" ColumnName="BusPerHr" />
+                <ScalarProperty Name="VanPerHr" ColumnName="VanPerHr" />
+                <ScalarProperty Name="BusPerKm" ColumnName="BusPerKm" />
+                <ScalarProperty Name="VanPerKm" ColumnName="VanPerKm" />
+                <ScalarProperty Name="BusPerDay" ColumnName="BusPerDay" />
+                <ScalarProperty Name="VanPerDay" ColumnName="VanPerDay" />
+                <ScalarProperty Name="TripTo" ColumnName="TripTo" />
+                <ScalarProperty Name="TripFrom" ColumnName="TripFrom" />
+                <ScalarProperty Name="TripID" ColumnName="TripID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TripsTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.TripsTable">
+              <MappingFragment StoreEntitySet="TripsTable">
+                <ScalarProperty Name="TripDays" ColumnName="TripDays" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="DriverContact" ColumnName="DriverContact" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="TripDetail" ColumnName="TripDetail" />
+                <ScalarProperty Name="RequesterContact" ColumnName="RequesterContact" />
+                <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="PayDriver" ColumnName="PayDriver" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="TripStatus" ColumnName="TripStatus" />
+                <ScalarProperty Name="PickupTime" ColumnName="PickupTime" />
+                <ScalarProperty Name="PickupDate" ColumnName="PickupDate" />
+                <ScalarProperty Name="TripDetailsTableID" ColumnName="TripDetailsTableID" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TripID" ColumnName="TripID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLoginDetails">
+            <EntityTypeMapping TypeName="TaxiServiceModel.UserLoginDetail">
+              <MappingFragment StoreEntitySet="UserLoginDetail">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserLoginPassword" ColumnName="UserLoginPassword" />
+                <ScalarProperty Name="UserLoginMobile" ColumnName="UserLoginMobile" />
+                <ScalarProperty Name="UserLoginEmail" ColumnName="UserLoginEmail" />
+                <ScalarProperty Name="UserTableID" ColumnName="UserTableID" />
+                <ScalarProperty Name="UserLoginID" ColumnName="UserLoginID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserStatusTables">
+            <EntityTypeMapping TypeName="TaxiServiceModel.UserStatusTable">
+              <MappingFragment StoreEntitySet="UserStatusTable">
+                <ScalarProperty Name="UserStatusVale" ColumnName="UserStatusVale" />
+                <ScalarProperty Name="UserStatusID" ColumnName="UserStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="TaxiServiceModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleTypes">
+            <EntityTypeMapping TypeName="TaxiServiceModel.VehicleType">
+              <MappingFragment StoreEntitySet="VehicleType">
+                <ScalarProperty Name="PerKmFare" ColumnName="PerKmFare" />
+                <ScalarProperty Name="BasicFareAmount" ColumnName="BasicFareAmount" />
+                <ScalarProperty Name="MinDistanceKm" ColumnName="MinDistanceKm" />
+                <ScalarProperty Name="MaxPassengers" ColumnName="MaxPassengers" />
+                <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
+                <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

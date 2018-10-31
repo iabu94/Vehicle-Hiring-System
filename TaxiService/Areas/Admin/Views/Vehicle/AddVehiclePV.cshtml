@@ -1,0 +1,56 @@
+﻿@model TaxiService.Models.Vehicle
+
+@{ 
+    Layout = null;
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">Add Vehicle</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="site-theme">
+    @using (Html.BeginForm("AddVehicle", "Vehicle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <form id="formAV">
+            <div style="padding-right:65px;padding-left:65px">
+                
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Number")
+                    @Html.TextBoxFor(model => model.VehicleNumber, new { @class = "form-control", @style = "float:right", @required= "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Type (Eg: TukTuk)")
+                    @Html.TextBoxFor(model => model.VehicleType, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+               <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Brand (Eg: Bajaj)")
+                    @Html.TextBoxFor(model => model.VehicleBrand, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Owner")
+                    @Html.TextBoxFor(model => model.VehicleOwner, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+               @* <div class="navbar-form div-row">
+        @Html.Label("Depertment Head")
+        @Html.DropDownListFor(model => model.depHead.empId, (SelectList)ViewBag.EmployeeList, "--select--", new { @class = "form-control" })
+
+    </div>
+    <div class="navbar-form div-row">
+        @Html.Label("Acting Depertment Head")
+        @Html.DropDownListFor(model => model.actingDH.empId, (SelectList)ViewBag.EmployeeList, "--select--", new { @class = "form-control" })
+    </div>*@
+            </div>
+
+            <div class="modal-footer site-theme">
+                <button class="btn btn-success" type="submit" required >Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    }
+</div>
+

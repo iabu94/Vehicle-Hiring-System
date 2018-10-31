@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TaxiServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TaxiServiceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminDetailsTables" EntityType="TaxiServiceModel.AdminDetailsTable" />
+    <EntitySet Name="DriverDetailsTables" EntityType="TaxiServiceModel.DriverDetailsTable" />
+    <EntitySet Name="HireStates" EntityType="TaxiServiceModel.HireState" />
+    <EntitySet Name="LocationsTables" EntityType="TaxiServiceModel.LocationsTable" />
+    <EntitySet Name="PaymentModeTables" EntityType="TaxiServiceModel.PaymentModeTable" />
+    <EntitySet Name="PaymentStatusTables" EntityType="TaxiServiceModel.PaymentStatusTable" />
+    <EntitySet Name="RideDetailsTables" EntityType="TaxiServiceModel.RideDetailsTable" />
+    <EntitySet Name="RiderDetailsTables" EntityType="TaxiServiceModel.RiderDetailsTable" />
+    <EntitySet Name="RideStatusTables" EntityType="TaxiServiceModel.RideStatusTable" />
+    <EntitySet Name="SellingVehicleDetails" EntityType="TaxiServiceModel.SellingVehicleDetail" />
+    <EntitySet Name="SellingVehicleImageTables" EntityType="TaxiServiceModel.SellingVehicleImageTable" />
+    <EntitySet Name="TripDetaisTables" EntityType="TaxiServiceModel.TripDetaisTable" />
+    <EntitySet Name="TripsTables" EntityType="TaxiServiceModel.TripsTable" />
+    <EntitySet Name="UserLoginDetails" EntityType="TaxiServiceModel.UserLoginDetail" />
+    <EntitySet Name="UserStatusTables" EntityType="TaxiServiceModel.UserStatusTable" />
+    <EntitySet Name="UserTypes" EntityType="TaxiServiceModel.UserType" />
+    <EntitySet Name="VehicleTypes" EntityType="TaxiServiceModel.VehicleType" />
+  </EntityContainer>
+  <EntityType Name="AdminDetailsTable">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="Int32" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserImageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="RegisteredDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="DriverDetailsTable">
+    <Key>
+      <PropertyRef Name="DriverID" />
+    </Key>
+    <Property Name="DriverID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DriverCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UserImageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="RegisteredDate" Type="DateTime" Precision="3" />
+    <Property Name="VehicleModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleYear" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleColor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LicenseNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="IsOnline" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Int32" />
+    <Property Name="VehicleType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="HireState">
+    <Key>
+      <PropertyRef Name="HireStatusID" />
+    </Key>
+    <Property Name="HireStatusID" Type="Int32" Nullable="false" />
+    <Property Name="HireStatus" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LocationsTable">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MainCity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Population" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Longtitude" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PaymentModeTable">
+    <Key>
+      <PropertyRef Name="PaymentModeID" />
+    </Key>
+    <Property Name="PaymentModeID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentMode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PaymentStatusTable">
+    <Key>
+      <PropertyRef Name="PaymentStatusID" />
+    </Key>
+    <Property Name="PaymentStatusID" Type="Boolean" Nullable="false" />
+    <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RideDetailsTable">
+    <Key>
+      <PropertyRef Name="RideID" />
+    </Key>
+    <Property Name="RideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="DriverID" Type="Int32" Nullable="false" />
+    <Property Name="PickupAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DropAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PickupDate" Type="DateTime" Precision="0" />
+    <Property Name="PickupTime" Type="Time" Precision="7" />
+    <Property Name="Distance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Duration" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="RideStatus" Type="Int32" />
+    <Property Name="PaymentStatus" Type="Boolean" />
+    <Property Name="PayDriver" Type="Int32" />
+    <Property Name="PaymentMode" Type="Int32" />
+    <Property Name="Amount" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RiderDetailsTable">
+    <Key>
+      <PropertyRef Name="RiderID" />
+    </Key>
+    <Property Name="RiderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RiderCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="RegisteredDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RideStatusTable">
+    <Key>
+      <PropertyRef Name="RideStatusID" />
+    </Key>
+    <Property Name="RideStatusID" Type="Int32" Nullable="false" />
+    <Property Name="RideStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SellingVehicleDetail">
+    <Key>
+      <PropertyRef Name="SellingID" />
+    </Key>
+    <Property Name="SellingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellingHead" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MileageKm" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleBrand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleModelYear" Type="Int32" />
+    <Property Name="Condition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EngineCapacity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNumber" Type="Int32" />
+    <Property Name="UploadedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SellingVehicleImageTable">
+    <Key>
+      <PropertyRef Name="SVITID" />
+    </Key>
+    <Property Name="SVITID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellingID" Type="Int32" />
+    <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TripDetaisTable">
+    <Key>
+      <PropertyRef Name="TripID" />
+    </Key>
+    <Property Name="TripID" Type="Int32" Nullable="false" />
+    <Property Name="TripFrom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TripTo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VanPerDay" Type="Int32" Nullable="false" />
+    <Property Name="BusPerDay" Type="Int32" Nullable="false" />
+    <Property Name="VanPerKm" Type="Int32" />
+    <Property Name="BusPerKm" Type="Int32" />
+    <Property Name="VanPerHr" Type="Int32" />
+    <Property Name="BusPerHr" Type="Int32" />
+    <Property Name="DistanceKm" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DurationHr" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CarPerDay" Type="Int32" Nullable="false" />
+    <Property Name="CarPerKm" Type="Int32" />
+    <Property Name="CarPerHr" Type="Int32" />
+    <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TripsTable">
+    <Key>
+      <PropertyRef Name="TripID" />
+    </Key>
+    <Property Name="TripID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="DriverID" Type="Int32" />
+    <Property Name="TripDetailsTableID" Type="Int32" Nullable="false" />
+    <Property Name="PickupDate" Type="DateTime" Precision="0" />
+    <Property Name="PickupTime" Type="Time" Precision="7" />
+    <Property Name="TripStatus" Type="Int32" />
+    <Property Name="PaymentStatus" Type="Boolean" />
+    <Property Name="PayDriver" Type="Int32" />
+    <Property Name="PaymentMode" Type="Int32" />
+    <Property Name="Amount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="RequestedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RequesterContact" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="TripDetail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DriverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DriverContact" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleType" Type="Int32" />
+    <Property Name="TripDays" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserLoginDetail">
+    <Key>
+      <PropertyRef Name="UserLoginID" />
+    </Key>
+    <Property Name="UserLoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTableID" Type="Int32" Nullable="false" />
+    <Property Name="UserLoginEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserLoginMobile" Type="Int32" Nullable="false" />
+    <Property Name="UserLoginPassword" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserStatusTable">
+    <Key>
+      <PropertyRef Name="UserStatusID" />
+    </Key>
+    <Property Name="UserStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserStatusVale" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserTypeName" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="Int32" Nullable="false" />
+    <Property Name="VehicleTypeName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MaxPassengers" Type="Int32" Nullable="false" />
+    <Property Name="MinDistanceKm" Type="Int32" />
+    <Property Name="BasicFareAmount" Type="Int32" Nullable="false" />
+    <Property Name="PerKmFare" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

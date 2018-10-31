@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Areas/DriverHome/Views/Shared/_LayoutPageDriver.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12 col-xl-12">
+            <div id="map" style="padding:25%">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function myMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(6.926858, 79.860841),
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    };
+</script>
+
+<!--  Google Maps Plugin    -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+

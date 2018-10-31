@@ -1,0 +1,190 @@
+﻿@model IEnumerable<TaxiService.Models.TripsTable>
+
+@{
+    ViewBag.Title = "Rejected";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-users fa-lg"></i></li>
+    <li class="breadcrumb-item">Trips</li>
+    <li class="breadcrumb-item"><a href="#">Rejected</a></li>
+</ul>
+
+<div class="panel-body">
+    <table class="table">
+        <tr>
+            <th>
+                Trip ID
+            </th>
+            <th>
+                Requested By
+            </th>
+            <th>
+                Contact Number
+            </th>
+            <th>
+                Trip Detail
+            </th>
+            <th>
+                Driver
+            </th>
+            <th>
+                Driver Contact
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TripID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequesterContact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TripDetail)
+                </td>
+                <td>
+                    <label class="label label-danger">@item.DriverName</label>
+                </td>
+                <td>
+                    <label class="label label-danger">@item.DriverContact</label>
+                </td>
+                <td>
+                    <label class="label label-danger">Rejected</label>
+                </td>
+
+                <td>
+                    <a class="btn btn-info" href="#" data-toggle="tooltip" data-placement="left" title="View" onclick="view(@item.TripID)">
+                        <i class="fa fa-eye fa-lg"></i>
+                    </a>
+                    <a class="btn btn-success" href="#" data-toggle="tooltip" data-placement="top" title="Approve" onclick="approvePopup(@item.TripID)">
+                        <i class="fa fa-check fa-lg"></i>
+                    </a>
+                    <a class="btn btn-danger" href="#" data-toggle="tooltip" data-placement="right" title="Reject" onclick="rejectPopup(@item.TripID )">
+                        <i class="fa fa-close fa-lg"></i>
+                    </a>
+                    <input type="hidden" id="hiddenRiderId" />
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<!--View Popoup Model-->
+<div class="modal fade" id="popupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body site-theme-model" id="popupModalBodyDiv">
+                @*popupPV*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Approve Popup Model-->
+<div class="modal fade" id="approvePopupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header site-theme">
+                <h3 class="modal-title">Approve Rider</h3>
+                <button data-dismiss="modal" class="close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body site-theme">
+                <span id="msg_confirm">Are you sure want to approve this rider..?</span>
+            </div>
+            <div class="modal-footer site-theme">
+                <a href="#" class="btn btn-danger" onclick="confirmApprove()">Confirm</a>
+                <a href="#" class="btn btn-success" data-dismiss="modal" onclick="cancel()">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Reject Popup Model-->
+<div class="modal fade" id="rejectPopupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header site-theme">
+                <h3 class="modal-title">Reject Rider</h3>
+                <button data-dismiss="modal" class="close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body site-theme">
+                <span id="msg_confirm">Are you sure want to reject this rider..?</span>
+            </div>
+            <div class="modal-footer site-theme">
+                <a href="#" class="btn btn-danger" onclick="confirmReject()">Confirm</a>
+                <a href="#" class="btn btn-success" data-dismiss="modal" onclick="cancel()">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //popup the view modal
+    var view = function (riderId) {
+        var url = '@Url.Action("ViewRider", "Rider")?riderId=' + riderId;
+
+        $("#popupModalBodyDiv").load(url, function () {
+            $("#popupModal").modal('show');
+        })
+    }
+
+    //popup the delete confirm popup
+    var approvePopup = function (riderId) {
+
+        $("#hiddenRiderId").val(riderId);
+        $("#approvePopupModal").modal('show');
+    }
+
+    var confirmApprove = function () {
+        var riderId = $("#hiddenRiderId").val();
+        var url = '@Url.Action("AproveRider", "Rider")';
+
+        $.ajax({
+
+            type: "POST",
+            url: url,
+            data: { riderId: riderId },
+            success: function (result) {
+                $("#approvePopupModal").modal("hide");
+                window.location.href = '@Url.Action("Pending")'
+            }
+        });
+    }
+
+    var rejectPopup = function (riderId) {
+
+        $("#hiddenRiderId").val(riderId);
+        $("#rejectPopupModal").modal('show');
+    }
+
+    var confirmReject = function () {
+        var riderId = $("#hiddenRiderId").val();
+        var url = '@Url.Action("RejectRider", "Rider")';
+
+        $.ajax({
+
+            type: "POST",
+            url: url,
+            data: { riderId: riderId },
+            success: function (result) {
+                $("#rejectPopupModal").modal("hide");
+                window.location.href = '@Url.Action("Pending")'
+            }
+        });
+    }
+
+</script>
+

@@ -1,0 +1,41 @@
+﻿@model TaxiService.Models.Vehicle
+
+@{
+
+    Layout = null;
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">View Vehicle</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body site-theme-body">
+    <table class="table table-hover table-striped ">
+        @if (Model != null)
+        {
+            <tr>
+                <td><b>Vehicle Number</b></td>
+                <td>@Model.VehicleNumber</td>
+            </tr>
+            @*<tr>
+                <td><b>Vehicle Type</b></td>
+                <td>@Model.VehicleType</td>
+            </tr>*@
+            <tr>
+                <td><b>Vehicle Brand</b></td>
+                <td>@Model.VehicleBrand</td>
+            </tr>
+            <tr>
+                <td><b>Availability</b></td>
+                <td>@Model.IsAvailable</td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Owner</b></td>
+                <td>@Model.VehicleOwner</td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="modal-footer site-theme">
+</div>

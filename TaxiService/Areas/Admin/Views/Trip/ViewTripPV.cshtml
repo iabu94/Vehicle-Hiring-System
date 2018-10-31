@@ -1,0 +1,98 @@
+﻿@model TaxiService.Areas.Admin.Models.TripViewModelAdmin
+
+@{
+    Layout = null;
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">View Trip Details</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+<div class="modal-body site-theme-body">
+    <table class="table table-hover table-striped ">
+        @if (Model != null)
+        {
+            <tr>
+                <td><b>Trip ID</b></td>
+                <td>@Model.Trips.TripID</td>
+            </tr>
+            <tr>
+                <td><b>Requested Rider</b></td>
+                <td>@(Model.Rider.FirstName + " " + Model.Rider.LastName)</td>
+            </tr>
+            <tr>
+                <td><b>Rider Contact</b></td>
+                <td>@Model.Rider.Mobile</td>
+            </tr>
+            <tr>
+                <td><b>Pickup Date</b></td>
+                <td>@string.Format("{0:MM/dd/yyyy}", Model.Trips.PickupDate)</td>
+            </tr>
+            <tr>
+                <td><b>Pickup Time</b></td>
+                <td>@Model.Trips.PickupTime</td>
+            </tr>
+            <tr>
+                <td><b>Trip Package</b></td>
+                <td>@Model.Trips.TripDetail</td>
+            </tr>
+            <tr>
+                <td><b>Driver Name</b></td>
+                @if (Model.Driver != null)
+                {
+                    <td>@(Model.Driver.LastName + " " + Model.Driver.LastName)</td>
+                }
+                else
+                {
+                    <td>Not Assigned</td>
+                }
+
+            </tr>
+            <tr>
+                <td><b>Driver Contact</b></td>
+                @if (Model.Driver != null)
+                {
+                    <td>@Model.Driver.Mobile</td>
+                }
+                else
+                {
+                    <td>Not Assigned</td>
+                }
+
+            </tr>
+            <tr>
+                <td><b>Trip Days</b></td>
+                <td>@Model.Trips.TripDays</td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Type</b></td>
+                <td>
+                    @switch (Model.Trips.VehicleType)
+                {
+                    case 1:
+                            <label>CAR</label>
+                            break;
+                        case 2:
+                            <label>VAN</label>
+                            break;
+                        case 3:
+                            <label>BUS</label>
+                            break;
+                        default:
+                            <label>VAN</label>
+                            break;
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td><b>Initial Trip Amount</b></td>
+                <td>@Model.Trips.Amount</td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="modal-footer site-theme">
+</div>

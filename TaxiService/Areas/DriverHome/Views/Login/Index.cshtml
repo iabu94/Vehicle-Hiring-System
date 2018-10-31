@@ -1,0 +1,142 @@
+﻿@model TaxiService.Models.DriverDetailsTable
+@{
+    Layout = null;
+}
+
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>eGo Taxi Services</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Sign Up" />
+
+    <script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+    </script>
+
+    <!-- Meta tag Keywords -->
+    <!-- css file -->
+    <link href="~/Areas/DriverHome/Content/style.css" rel="stylesheet" />
+    <!-- Style-CSS -->
+    <!-- //css file -->
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Cuprum:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese"
+          rel="stylesheet">
+    <!-- //web-fonts -->
+
+</head>
+
+<body>
+    <!-- title -->
+    <h1>
+        <span>E</span>go
+        <span>T</span>axi
+        <span>S</span>ervice
+    </h1>
+    <!-- //title -->
+    <!-- content -->
+    <div class="sub-main-w3">
+        @using (Html.BeginForm("SignUp", "Login", new { area = "DriverHome" }, FormMethod.Post))
+        {
+            <form validate="true" action="#" method="post">
+                <div class="form-group">
+                    <label for="fNameInput">First Name</label>
+                    @Html.TextBoxFor(x => x.FirstName, new { type = "text", @class = "form-control", name = "fname", id = "fNameInput", placeholder = "Enter First Name" })
+                </div>
+                <div class="form-group">
+                    <label for="lNameInput">Last Name</label>
+                    @Html.TextBoxFor(x => x.LastName, new { type = "text", @class = "form-control", name = "lname", id = "lnameinput", placeholder = "Enter Last Name" })
+                </div>
+                <div class="form-group">
+                    <label for="emailInput">Email Address</label>
+                    @Html.TextBoxFor(x => x.Email, new { type = "email", @class = "form-control", name = "email", id = "emailInput", placeholder = "Enter Email" })
+                </div>
+                <div class="form-group">
+                    <label for="mobileInput">Mobile Number</label>
+                    @Html.TextBoxFor(x => x.Mobile, new { type = "text", @class = "form-control", name = "mobile", id = "mobileInput", placeholder = "Enter Mobile Number" })
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <input maxlength="10" minlength="3" type="password" name="password" class="form-control" id="passwordInput" placeholder="Password"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="cpassword" placeholder="Confirm Password" required data-match="password"
+                           data-match-field="#passwordInput">
+                </div>
+                <div class="form-group">
+                    <label for="addressInput">Address</label>
+                    <input type="text" class="form-control" id="addressInput" name="address" placeholder="Enter Your Address" required />
+                </div>
+                <div class="form-group">
+                    <label for="imageInput">Image</label>
+                    <input type="text" class="form-control" id="imageInput" name="image" placeholder="Upload a Clear Photo of Your's" required />
+                </div>
+                <div class="form-group">
+                    <label for="vehicleModel">Vehicle Model</label>
+                    <input type="text" class="form-control" id="vehicleModel" name="vmodel" placeholder="Vehicle Model" required />
+                </div>
+                <div class="form-group">
+                    <label for="vehicleBrand"></label>
+                    <input type="text" class="form-control" id="vehicleBrand" name="vbrand" placeholder="Vehicle Brand" required />
+                </div>
+                <div class="form-group">
+                    <label for="vehicleYear"></label>
+                    <input type="text" class="form-control" id="vehicleYear" name="vyear" placeholder="Vehicle Produced Year" required />
+                </div>
+                <div class="form-group">
+                    <label for="vehicleColor"></label>
+                    <input type="text" class="form-control" id="vehicleColor" name="vcolor" placeholder="Vehicle Color" required />
+                </div>
+                <div class="form-group">
+                    <label for="vehicleNumber"></label>
+                    <input type="text" class="form-control" id="vehicleNumber" name="vnumber" placeholder="Vehicle Number" required />
+                </div>
+                <div class="form-group">
+                    <label for="licenseNumber"></label>
+                    <input type="text" class="form-control" id="licenseNumber" name="license" placeholder="License Number" required />
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" value="true" required>I agree to the terms and conditions
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        }
+
+    </div>
+    <!-- //content -->
+    <!-- copyright -->
+    <div class="footer">
+        <p>
+            &copy; 2018 Ego Signup Form. All rights reserved | Design by
+            <a href="https://facebook.com/iAbu94" target="_blank">iHacker1.0</a>
+        </p>
+    </div>
+    <!-- //copyright -->
+    <!-- Jquery -->
+    <script src="~/Areas/DriverHome/Content/jquery-2.2.3.min.js"></script>
+    <!-- //Jquery -->
+    <!-- Jquery -->
+    <script src="~/Areas/DriverHome/Content/jquery-simple-validator.min.js"></script>
+    <!-- //Jquery -->
+
+</body>
+
+</html>

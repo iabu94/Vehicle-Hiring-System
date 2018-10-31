@@ -1,0 +1,96 @@
+﻿@model TaxiService.Models.DriverDetailsTable
+
+@{
+    Layout = null;
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">Add Driver</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="site-theme">
+    @using (Html.BeginForm("AddDriver", "Driver", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <form id="formAD">
+            <div style="padding-right:65px;padding-left:65px">
+
+                <div class="navbar-form div-row">
+                    @Html.Label("First Name")
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Last Name")
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Address")
+                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Current Location")
+                    @Html.TextBoxFor(model => model.CurrentLocation, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Email")
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("License No")
+                    @Html.TextBoxFor(model => model.LicenseNo, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Mobile")
+                    @Html.TextBoxFor(model => model.Mobile, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Password")
+                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Model")
+                    @Html.TextBoxFor(model => model.VehicleModel, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Brand")
+                    @Html.TextBoxFor(model => model.VehicleBrand, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Color")
+                    @Html.TextBoxFor(model => model.VehicleColor, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Number")
+                    @Html.TextBoxFor(model => model.VehicleNumber, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Vehicle Year")
+                    @Html.TextBoxFor(model => model.VehicleYear, new { @class = "form-control", @id = "proCode", @style = "float:right", @required = "required" })
+                </div>
+
+                <div class="navbar-form div-row">
+                    @Html.Label("Image")
+                    @Html.TextBoxFor(model => model.UserImageUrl, new { type = "file", id = "file", name = "file", @class = "form-control", @style = "float:right; width:200px", @required = "required" })
+                </div>
+
+            </div>
+
+            <div class="modal-footer site-theme">
+                <button class="btn btn-success" type="submit" required>Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+    }
+</div>

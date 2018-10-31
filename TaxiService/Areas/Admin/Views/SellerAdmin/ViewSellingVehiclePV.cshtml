@@ -1,0 +1,76 @@
+﻿@model TaxiService.Models.SellingVehicleDetail
+@{
+
+    Layout = null;
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">View Selling Vehicle</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body site-theme-body">
+    <table class="table table-hover table-striped ">
+        @if (Model != null)
+        {
+            <tr>
+                <td><b>Selling Head</b></td>
+                <td>@Model.SellingHead</td>
+            </tr>
+            <tr>
+                <td><b>Mileage Km</b></td>
+                <td>@Model.MileageKm</td>
+            </tr>
+            <tr>
+                <td><b>Price</b></td>
+                <td>@Model.Price</td>
+            </tr>
+            <tr>
+                <td><b>Description</b></td>
+               <td style="max-width:500px">@Html.Raw(Model.VehicleDescription.Replace(Environment.NewLine,"<br/>"))</td>
+            </tr>
+            <tr>
+                <td><b>Brand</b></td>
+                <td>@Model.VehicleBrand</td>
+            </tr>
+            <tr>
+                <td><b>Model</b></td>
+                <td>@Model.VehicleModel</td>
+            </tr>
+            <tr>
+                <td><b>Year</b></td>
+                <td>@Model.VehicleModelYear</td>
+            </tr>
+            <tr>
+                <td><b>Condition</b></td>
+                <td>@Model.Condition</td>
+            </tr>
+            <tr>
+                <td><b>Engine Capacity</b></td>
+                <td>@Model.EngineCapacity</td>
+            </tr>
+            <tr>
+                <td><b>Contact Number</b></td>
+                <td>@Model.ContactNumber</td>
+            </tr>
+            <tr>
+                <td><b>Uploaded date</b></td>
+                <td>@Model.UploadedDate</td>
+            </tr>
+            if (ViewBag.VehicleImages != null)
+            {
+                foreach (var item in ViewBag.VehicleImages)
+                {
+                    
+                    <tr>
+                        <td><b>Image</b></td>
+                        <td><img src="@Url.Content(item.ImageUrl)" alt="Not Available" style="width:200px;height:200px;" /></td>
+                    </tr>
+                }
+            }
+
+        }
+    </table>
+</div>
+<div class="modal-footer site-theme">
+</div>

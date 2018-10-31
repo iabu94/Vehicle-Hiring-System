@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>eGo Taxi</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link rel="icon" href="~/Images/EgoSqureIco.ico" />
+    <!--
+    CSS
+    ============================================= -->
+
+    <link href="~/Content/UserPage/linearicons.css" rel="stylesheet" />
+    <link href="~/Content/UserPage/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/UserPage/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/UserPage/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/UserPage/nice-select.css" rel="stylesheet" />
+    <link href="~/Content/UserPage/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/UserPage/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/UserPage/main.css" rel="stylesheet" />
+    <link href="~/Content/common.css" rel="stylesheet" />
+
+    <!--=========responsive web start==========-->
+    <!--Google Font link-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!--Theme custom css -->
+    <!--Theme Responsive css-->
+    <!--=========responsive web end=========-->
+</head>
+<body>
+    <!--Pre loader strart-->
+    @*<div id="loading">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                    <div class="object" id="object_one"></div>
+                    <div class="object" id="object_two"></div>
+                    <div class="object" id="object_three"></div>
+                    <div class="object" id="object_four"></div>
+                </div>
+            </div>
+        </div>*@
+    <!--Pre loader end-->
+
+    <header id="header">
+        <div class="header-top">
+        </div>
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <a href="@Url.Action("Index", "UserHome", new { area = "" })"><img src="~/Images/TaxiLogo005.png" style="height:25px;width:100px" alt="" title="" /></a>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="@Url.Action("Index", "UserHome", new { area = "" })">Home</a></li>
+                        <li><a href="@Url.Action("Index","Trips",new { area = ""})">Trip Plans</a></li>
+                        <li><a href="">Rent</a></li>
+                        <li><a href="@Url.Action("Index","Seller",new { area = ""})">eGo Seller</a></li>
+                        <li class="menu-has-children">
+                            <a href=#>Blog</a>
+                            <ul>
+                                <li><a href=#>Blog Home</a></li>
+                                <li><a href=#>Blog Single</a></li>
+                                <li class="menu-has-children">
+                                    <a href=#>Level 2</a>
+                                    <ul>
+                                        <li><a href="#">Item One</a></li>
+                                        <li><a href="#">Item Two</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Elements</a></li>
+
+                        @if (Session["LoggedUserID"] == null)
+                        {
+                            <li><a href="@Url.Action("Login","UserHome", new { area=""})">Login</a></li>
+                        }
+                        else
+                        {
+                            <li class="menu-has-children">
+                                <a href="#">@Session["LoggedUserName"]</a>
+                                <ul>
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="@Url.Action("Logout","Login", new { area="Admin"})">Logout</a></li>
+                                </ul>
+                            </li>
+                        }
+
+                    </ul>
+                </nav>
+                <!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header>
+    <!-- #header -->
+
+    <section class="banner-area relative about-banner" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center" style="height:150px">
+                <div class="about-content col-lg-12">
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li class="menu-active"><a href="@Url.Action("Index", "MyAccount", new { area = "" })">My Profile</a></li>
+                        <li><a href="@Url.Action("Index","MyAccount",new { area = ""})">My Trips</a></li>
+                        <li><a href="@Url.Action("Index","MyAccount",new { area = ""})">Pending Items</a></li>
+                        <li><a href="@Url.Action("Index","MyAccount",new { area = ""})">Settings</a></li>
+                    </ul>
+                </nav>
+                <!-- #nav-menu-container -->
+            </div>
+        </div>
+
+    <div style="margin:50px 50px">
+        @RenderBody()
+    </div>
+
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Brand Assets</a></li>
+                            <li><a href="#">Investor Relations</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Features</h6>
+                        <ul>
+                            <li><a href="#">Jobs</a></li>
+                            <li><a href="#">Brand Assets</a></li>
+                            <li><a href="#">Investor Relations</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Resources</h6>
+                        <ul>
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Experts</a></li>
+                            <li><a href="#">Agencies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                    <div class="single-footer-widget">
+                        <h6>Follow Us</h6>
+                        <p>Let us be social</p>
+                        <div class="footer-social d-flex align-items-center">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Newsletter</h6>
+                        <p>Stay update with our latest</p>
+                        <div class="" id="mc_embed_signup">
+                            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+                                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
+                                <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
+                                <div style="position: absolute; left: -5000px;">
+                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                </div>
+                                <div class="info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-80 mx-auto footer-text col-lg-12">
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://facebook.com/iAbu94" target="_blank">iHacker2.0</a>
+
+                </p>
+            </div>
+        </div>
+        <img class="footer-bottom" src="" alt="">
+    </footer>
+    <!-- End footer Area -->
+
+    <script src="~/scripts/UserPage/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="~/scripts/UserPage/js/vendor/bootstrap.min.js"></script>
+
+    <script src="~/scripts/UserPage/js/easing.min.js"></script>
+    <script src="~/scripts/UserPage/js/hoverIntent.js"></script>
+
+    <script src="~/scripts/UserPage/js/superfish.min.js"></script>
+    <script src="~/scripts/UserPage/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/scripts/UserPage/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/scripts/UserPage/js/jquery-ui.js"></script>
+    <script src="~/scripts/UserPage/js/jquery.nice-select.min.js"></script>
+    <script src="~/scripts/UserPage/js/mail-script.js"></script>
+    <script src="~/scripts/UserPage/js/main.js"></script>
+
+    <!--Responsive start-->
+    @*<script src="~/Content/Responsive/js/main.js"></script>*@
+    <!--Responsive end-->
+    <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdsaERISYyGWXAR5s8aBaumYo4gGrOxh0&libraries=places&callback=locatePlaces"></script>
+
+
+</body>
+</html>

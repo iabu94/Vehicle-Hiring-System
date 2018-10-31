@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TaxiServiceModelStoreContainer" CdmEntityContainer="TaxiServiceEntities">
+    <EntitySetMapping Name="AdminDetailsTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.AdminDetailsTable">
+        <MappingFragment StoreEntitySet="AdminDetailsTable">
+          <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+          <ScalarProperty Name="UserImageUrl" ColumnName="UserImageUrl" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="AdminCode" ColumnName="AdminCode" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverDetailsTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.DriverDetailsTable">
+        <MappingFragment StoreEntitySet="DriverDetailsTable">
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LicenseNo" ColumnName="LicenseNo" />
+          <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+          <ScalarProperty Name="VehicleColor" ColumnName="VehicleColor" />
+          <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+          <ScalarProperty Name="VehicleBrand" ColumnName="VehicleBrand" />
+          <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+          <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+          <ScalarProperty Name="UserImageUrl" ColumnName="UserImageUrl" />
+          <ScalarProperty Name="CurrentLocation" ColumnName="CurrentLocation" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="DriverCode" ColumnName="DriverCode" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HireStates">
+      <EntityTypeMapping TypeName="TaxiServiceModel.HireState">
+        <MappingFragment StoreEntitySet="HireState">
+          <ScalarProperty Name="HireStatus" ColumnName="HireStatus" />
+          <ScalarProperty Name="HireStatusID" ColumnName="HireStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationsTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.LocationsTable">
+        <MappingFragment StoreEntitySet="LocationsTable">
+          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Population" ColumnName="Population" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="MainCity" ColumnName="MainCity" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentModeTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.PaymentModeTable">
+        <MappingFragment StoreEntitySet="PaymentModeTable">
+          <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+          <ScalarProperty Name="PaymentModeID" ColumnName="PaymentModeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentStatusTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.PaymentStatusTable">
+        <MappingFragment StoreEntitySet="PaymentStatusTable">
+          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+          <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RideDetailsTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.RideDetailsTable">
+        <MappingFragment StoreEntitySet="RideDetailsTable">
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+          <ScalarProperty Name="PayDriver" ColumnName="PayDriver" />
+          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+          <ScalarProperty Name="RideStatus" ColumnName="RideStatus" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="PickupTime" ColumnName="PickupTime" />
+          <ScalarProperty Name="PickupDate" ColumnName="PickupDate" />
+          <ScalarProperty Name="DropAddress" ColumnName="DropAddress" />
+          <ScalarProperty Name="PickupAddress" ColumnName="PickupAddress" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="RideID" ColumnName="RideID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RiderDetailsTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.RiderDetailsTable">
+        <MappingFragment StoreEntitySet="RiderDetailsTable">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+          <ScalarProperty Name="CurrentLocation" ColumnName="CurrentLocation" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="RiderCode" ColumnName="RiderCode" />
+          <ScalarProperty Name="RiderID" ColumnName="RiderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RideStatusTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.RideStatusTable">
+        <MappingFragment StoreEntitySet="RideStatusTable">
+          <ScalarProperty Name="RideStatus" ColumnName="RideStatus" />
+          <ScalarProperty Name="RideStatusID" ColumnName="RideStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SellingVehicleDetails">
+      <EntityTypeMapping TypeName="TaxiServiceModel.SellingVehicleDetail">
+        <MappingFragment StoreEntitySet="SellingVehicleDetail">
+          <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="EngineCapacity" ColumnName="EngineCapacity" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="VehicleModelYear" ColumnName="VehicleModelYear" />
+          <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+          <ScalarProperty Name="VehicleBrand" ColumnName="VehicleBrand" />
+          <ScalarProperty Name="VehicleDescription" ColumnName="VehicleDescription" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="MileageKm" ColumnName="MileageKm" />
+          <ScalarProperty Name="SellingHead" ColumnName="SellingHead" />
+          <ScalarProperty Name="SellingID" ColumnName="SellingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SellingVehicleImageTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.SellingVehicleImageTable">
+        <MappingFragment StoreEntitySet="SellingVehicleImageTable">
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="SellingID" ColumnName="SellingID" />
+          <ScalarProperty Name="SVITID" ColumnName="SVITID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TripDetaisTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.TripDetaisTable">
+        <MappingFragment StoreEntitySet="TripDetaisTable">
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="CarPerHr" ColumnName="CarPerHr" />
+          <ScalarProperty Name="CarPerKm" ColumnName="CarPerKm" />
+          <ScalarProperty Name="CarPerDay" ColumnName="CarPerDay" />
+          <ScalarProperty Name="DurationHr" ColumnName="DurationHr" />
+          <ScalarProperty Name="DistanceKm" ColumnName="DistanceKm" />
+          <ScalarProperty Name="BusPerHr" ColumnName="BusPerHr" />
+          <ScalarProperty Name="VanPerHr" ColumnName="VanPerHr" />
+          <ScalarProperty Name="BusPerKm" ColumnName="BusPerKm" />
+          <ScalarProperty Name="VanPerKm" ColumnName="VanPerKm" />
+          <ScalarProperty Name="BusPerDay" ColumnName="BusPerDay" />
+          <ScalarProperty Name="VanPerDay" ColumnName="VanPerDay" />
+          <ScalarProperty Name="TripTo" ColumnName="TripTo" />
+          <ScalarProperty Name="TripFrom" ColumnName="TripFrom" />
+          <ScalarProperty Name="TripID" ColumnName="TripID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TripsTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.TripsTable">
+        <MappingFragment StoreEntitySet="TripsTable">
+          <ScalarProperty Name="TripDays" ColumnName="TripDays" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="DriverContact" ColumnName="DriverContact" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="TripDetail" ColumnName="TripDetail" />
+          <ScalarProperty Name="RequesterContact" ColumnName="RequesterContact" />
+          <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+          <ScalarProperty Name="PayDriver" ColumnName="PayDriver" />
+          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+          <ScalarProperty Name="TripStatus" ColumnName="TripStatus" />
+          <ScalarProperty Name="PickupTime" ColumnName="PickupTime" />
+          <ScalarProperty Name="PickupDate" ColumnName="PickupDate" />
+          <ScalarProperty Name="TripDetailsTableID" ColumnName="TripDetailsTableID" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TripID" ColumnName="TripID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLoginDetails">
+      <EntityTypeMapping TypeName="TaxiServiceModel.UserLoginDetail">
+        <MappingFragment StoreEntitySet="UserLoginDetail">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserLoginPassword" ColumnName="UserLoginPassword" />
+          <ScalarProperty Name="UserLoginMobile" ColumnName="UserLoginMobile" />
+          <ScalarProperty Name="UserLoginEmail" ColumnName="UserLoginEmail" />
+          <ScalarProperty Name="UserTableID" ColumnName="UserTableID" />
+          <ScalarProperty Name="UserLoginID" ColumnName="UserLoginID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserStatusTables">
+      <EntityTypeMapping TypeName="TaxiServiceModel.UserStatusTable">
+        <MappingFragment StoreEntitySet="UserStatusTable">
+          <ScalarProperty Name="UserStatusVale" ColumnName="UserStatusVale" />
+          <ScalarProperty Name="UserStatusID" ColumnName="UserStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="TaxiServiceModel.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleTypes">
+      <EntityTypeMapping TypeName="TaxiServiceModel.VehicleType">
+        <MappingFragment StoreEntitySet="VehicleType">
+          <ScalarProperty Name="PerKmFare" ColumnName="PerKmFare" />
+          <ScalarProperty Name="BasicFareAmount" ColumnName="BasicFareAmount" />
+          <ScalarProperty Name="MinDistanceKm" ColumnName="MinDistanceKm" />
+          <ScalarProperty Name="MaxPassengers" ColumnName="MaxPassengers" />
+          <ScalarProperty Name="VehicleTypeName" ColumnName="VehicleTypeName" />
+          <ScalarProperty Name="VehicleTypeID" ColumnName="VehicleTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,189 @@
+﻿@model IEnumerable<TaxiService.Models.DriverDetailsTable>
+
+@{
+    ViewBag.Title = "Pending";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-cab fa-lg"></i></li>
+    <li class="breadcrumb-item">Drivers</li>
+    <li class="breadcrumb-item"><a href="#">Pending</a></li>
+</ul>
+
+<div class="panel-body">
+    <table class="table">
+        <tr>
+            <th class="col-sm-2">
+                Driver Code
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Mobile
+            </th>
+            <th>
+                Email
+            </th>
+            <th class="col-sm-2">
+                Location (Current)
+            </th>
+            <th class="col-sm-1">
+                Status
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DriverCode)
+                </td>
+                <td>
+                    @item.FirstName &nbsp; @item.LastName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentLocation)
+                </td>
+                @if (item.Status == 1)
+                {
+                    <td>
+                        <label class="label label-warning">Pending</label>
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+
+                <td>
+                    <a class="btn btn-info" href="#" data-toggle="tooltip" data-placement="left" title="View" onclick="view(@item.DriverID)">
+                        <i class="fa fa-eye fa-lg"></i>
+                    </a>
+                    <a class="btn btn-success" href="#" data-toggle="tooltip" data-placement="top" title="Approve" onclick="approvePopup(@item.DriverID)">
+                        <i class="fa fa-check fa-lg"></i>
+                    </a>
+                    <a class="btn btn-danger" href="#" data-toggle="tooltip" data-placement="right" title="Reject" onclick="rejectPopup(@item.DriverID)">
+                        <i class="fa fa-close fa-lg"></i>
+                    </a>
+                    <input type="hidden" id="hiddenDriverId" />
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<div class="modal fade" id="popupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body site-theme-model" id="popupModalBodyDiv">
+                @*popupPV*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Approve Popup Model-->
+<div class="modal fade" id="approvePopupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header site-theme">
+                <h3 class="modal-title">Approve Driver</h3>
+                <button data-dismiss="modal" class="close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body site-theme">
+                <span id="msg_confirm">Are you sure want to approve this Driver..?</span>
+            </div>
+            <div class="modal-footer site-theme">
+                <a href="#" class="btn btn-danger" onclick="confirmApprove()">Confirm</a>
+                <a href="#" class="btn btn-success" data-dismiss="modal" onclick="cancel()">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Reject Popup Model-->
+<div class="modal fade" id="rejectPopupModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header site-theme">
+                <h3 class="modal-title">Reject Driver</h3>
+                <button data-dismiss="modal" class="close"><span>&times;</span></button>
+            </div>
+            <div class="modal-body site-theme">
+                <span id="msg_confirm">Are you sure want to reject this Driver..?</span>
+            </div>
+            <div class="modal-footer site-theme">
+                <a href="#" class="btn btn-danger" onclick="confirmReject()">Confirm</a>
+                <a href="#" class="btn btn-success" data-dismiss="modal" onclick="cancel()">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //popup the view modal
+    var view = function (driverId) {
+        var url = '@Url.Action("ViewDriver", "Driver")?driverId=' + driverId;
+
+        $("#popupModalBodyDiv").load(url, function () {
+            $("#popupModal").modal('show');
+        })
+    }
+
+    //popup the delete confirm popup
+    var approvePopup = function (driverId) {
+
+        $("#hiddenDriverId").val(driverId);
+        $("#approvePopupModal").modal('show');
+    }
+
+    var confirmApprove = function () {
+        var driverId = $("#hiddenDriverId").val();
+        var url = '@Url.Action("ApproveDriver", "Driver")';
+
+        $.ajax({
+
+            type: "POST",
+            url: url,
+            data: { driverId: driverId },
+            success: function (result) {
+                $("#approvePopupModal").modal("hide");
+                window.location.href = '@Url.Action("Pending")'
+            }
+        });
+    }
+
+    var rejectPopup = function (driverId) {
+
+        $("#hiddenDriverId").val(driverId);
+        $("#rejectPopupModal").modal('show');
+    }
+
+    var confirmReject = function () {
+        var driverId = $("#hiddenDriverId").val();
+        var url = '@Url.Action("RejectDriver", "Driver")';
+
+        $.ajax({
+
+            type: "POST",
+            url: url,
+            data: { driverId: driverId },
+            success: function (result) {
+                $("#rejectPopupModal").modal("hide");
+                window.location.href = '@Url.Action("Pending")'
+            }
+        });
+    }
+
+</script>

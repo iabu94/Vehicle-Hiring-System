@@ -1,0 +1,71 @@
+﻿@model TaxiService.Models.DriverDetailsTable
+@{
+    ViewBag.Title = "RegisterDriver";
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row col-md-12">
+            &nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
+        </div>
+        <div class="row fullscreen align-items-baseline justify-content-between">
+            <div>
+            </div>
+
+            @using (Html.BeginForm("RegisterDriver", "Login", new { area = "DriverHome" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <form id="form">
+                    <div class="row">
+                        <div class="col-md-6  header-right">
+                            <h4 class="pb-30">Register Online! - Driver</h4>
+                            <div class="from-group">
+                                @Html.TextBoxFor(x => x.FirstName, new { type = "text", @class = "form-control txt-field", name = "fname", id = "fNameInput", placeholder = "Enter First Name", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.LastName, new { type = "text", @class = "form-control txt-field", name = "lname", id = "lnameinput", placeholder = "Enter Last Name", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.Email, new { type = "email", @class = "form-control txt-field", name = "email", id = "emailInput", placeholder = "Enter Email", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.Mobile, new { type = "text", @class = "form-control txt-field", name = "mobile", id = "mobileInput", placeholder = "Enter Mobile Number", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.Password, new { maxlength = "15", minlength = "3", type = "password", name = "password", @class = "form-control txt-field", id = "passwordInput", placeholder = "Password", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.Password, new { type = "password", @class = "form-control txt-field", id = "confirmPassword", name = "cpassword", placeholder = "Confirm Password", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.Address, new { type = "text", @class = "form-control txt-field", id = "addressInput", name = "address", placeholder = "Enter Your Address", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.UserImageUrl, new { type = "file", id = "file", name = "file", @class = "form-control txt-field", title = "User Image", accept = "image/x-png,image/gif,image/jpeg", placeholder = "Upload a Clear Photo of Your's", required = "required ", style = "color:white" })
+                            </div>
+                        </div>
+                        <div class="col-md-6 header-right">
+                            <h4 class="pb-30">Register Online! - Vehicle</h4>
+                            <div class="form-group">
+                                <div class="default-select" id="default-select2" style = "color:white;">
+                                    <select asp-for="VehicleModel" name="VehicleModel" required>
+                                        <option value="" disabled selected hidden>Vehicle Model</option>
+                                        <option value="NanoCar">NanoCar</option>
+                                        <option value="Car">Car</option>
+                                        <option value="Van">Van</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="from-group">
+                                @Html.TextBoxFor(x => x.VehicleBrand, new { type = "text", @class = "form-control txt-field", id = "vehicleBrand", name = "vbrand", placeholder = "Vehicle Brand", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.VehicleYear, new { type = "text", @class = "form-control txt-field", id = "vehicleYear", name = "vyear", placeholder = "Vehicle Produced Year", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.VehicleColor, new { type = "text", @class = "form-control txt-field", id = "vehicleColor", name = "vcolor", placeholder = "Vehicle Color", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.VehicleNumber, new { type = "text", @class = "form-control txt-field", id = "vehicleNumber", name = "vnumber", placeholder = "Vehicle Number", required = "required", style = "color:white" })
+                                @Html.TextBoxFor(x => x.LicenseNo, new { type = "text", @class = "form-control txt-field", id = "licenseNumber", name = "license", placeholder = "License Number", required = "required", style = "color:white" })
+                                <label class="checkbox-inline form-control txt-field" style="color:white; text-align:start;background-color:black;">
+                                    <input type="checkbox" value="true" required>&nbsp;&nbsp; I agree to the terms & conditions
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success btn-lg btn-block text-center text-uppercase">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            }
+
+
+            <div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->

@@ -1,0 +1,82 @@
+﻿@model TaxiService.Models.DriverDetailsTable
+
+@{
+
+    Layout = null;
+}
+
+<link href="~/Content/common.css" rel="stylesheet" />
+<div class="modal-header site-theme">
+    <h4 class="modal-title pull-left">View Driver</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body site-theme-body">
+    <table class="table table-hover table-striped ">
+        @if (Model != null)
+        {
+            <tr>
+                <td><b>Driver Code</b></td>
+                <td>@Model.DriverCode</td>
+            </tr>
+            <tr>
+                <td><b>First Name</b></td>
+                <td>@Model.FirstName</td>
+            </tr>
+            <tr>
+                <td><b>Last Name</b></td>
+                <td>@Model.LastName</td>
+            </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td><b>Mobile</b></td>
+                <td>@Model.Mobile</td>
+            </tr>
+            <tr>
+                <td><b>Address</b></td>
+                <td>@Model.Address</td>
+            </tr>
+            <tr>
+                <td><b>Current Location</b></td>
+                <td>@Model.CurrentLocation</td>
+            </tr>
+            <tr>
+                <td><b>Registered</b></td>
+                <td>@Model.RegisteredDate</td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Model</b></td>
+                <td>@Model.VehicleModel</td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Brand</b></td>
+                <td>@Model.VehicleBrand</td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Year</b></td>
+                <td>@Model.VehicleYear</td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Color</b></td>
+                <td>@Model.VehicleColor</td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Number</b></td>
+                <td>@Model.VehicleNumber</td>
+            </tr>
+            <tr>
+                <td><b>License Number</b></td>
+                <td>@Model.LicenseNo</td>
+            </tr>
+            <tr>
+                <td><b>Image</b></td>
+                
+                <td><img src="@Url.Content(Model.UserImageUrl)" alt="Not Available" style="width:100px;height:100px;"/></td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="modal-footer site-theme">
+</div>

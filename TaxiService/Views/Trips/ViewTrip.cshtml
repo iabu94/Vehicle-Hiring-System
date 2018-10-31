@@ -1,0 +1,193 @@
+﻿@model TaxiService.Models.ViewTripModel
+@{
+    ViewBag.Title = "ViewTrip";
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+}
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    FASTER. SAFER. SMARTER.
+                </h1>
+                <h5 class="text-white">
+                    We take out the hassle and bring back the joy of traveling.
+                </h5>
+                <p class="text-white link-nav"><a href="@Url.Action("Index","UserHome")">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("NewBooking","UserHome")"> Services</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+@using (Html.BeginForm("SubmitTrip", "Trips", new { area = ""}, FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.tripId)
+    <div class="container-fluid">
+        <div class="row" style="margin-top:25px;margin-bottom:25px">
+            <div class="col-md-2"></div>
+            <div class="col-md-4" style="background-color:#F9F9F9">
+                <div class="form-group">
+                    <br /><h5 style="text-align:center">Tour package details</h5><br />
+                    <h6 style="text-align:center">Terms & Conditions For Package Rate</h6><br />
+                    <p>All mentioned rates are only for return rides from Colombo region/greater Colombo.</p>
+
+                    <p>
+                        Rates given do not include parking or highway tolls.
+                    </p>
+
+                    <p>
+                        Distance and duration exceeding the package limit will be charged as follows:
+                    </p>
+                    <p>
+                    <p> Car :- Rs.50/- Per Km + Rs.250/- For Per Hour</p>
+                    <p>
+                        Van :- Rs.100/- Per Km + Rs.500/- For Per Hour
+                    </p>
+                    <p>
+                        Bus :- Rs.400/- Per Km + Rs.1000/- For Per Hour
+                    </p>
+                    <p>
+                        Please contact <a href=#>+9471 999 4818</a> for more information.
+                    </p>
+                    <img src="~/Images/UserLayout/67994.png" style="height:200px;width:200px" />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="default-select" id="default-select2" style="color:blue;">
+                        <select id="noOfDays" asp-for="TripDays" name="TripDays" required>
+                            <option value=1 selected>1 Day</option>
+                            <option value=2>2 Days</option>
+                            <option value=3>3 Days</option>
+                            <option value=4>4 Days</option>
+                            <option value=5>5 Days</option>
+                        </select>
+                        <p style="padding:10px;color:black;font-weight:bold"> &nbsp; Select Days & See The Aproximate Amount</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row" style="margin-left:10px">
+                        <input type="radio" name="VehicleType" checked="checked" id="typeCar" value="2" required style="margin-top:50px" />
+                        <label for="typeCar">
+                            <img src="~/Images/Trips/car.png"
+                                 alt="Type 1 car" style="height:100px;width:300px" />
+                        </label>
+                        <p id="amount1" style="padding-top:40px;padding-left:20px;background-color:#F9F9F9;height:100px;width:150px"></p>
+                        <input type="hidden" id="amnt1" name="CarAmount"/>
+                    </div>
+                    <div class="row" style="margin-left:10px">
+                        <input type="radio" name="VehicleType" id="typeVan" value="3" required style="margin-top:50px" />
+                        <label for="typeVan">
+                            <img src="~/Images/Trips/van.png"
+                                 alt="Type 1 car" style="height:100px;width:300px" />
+                        </label>
+                        <p id="amount2" style="padding-top:40px;padding-left:20px;background-color:#F9F9F9;height:100px;width:150px"></p>
+                        <input type="hidden" id="amnt2" name="VanAmount" />
+                    </div>
+                    <div class="row" style="margin-left:10px">
+                        <input type="radio" name="VehicleType" id="typeBus" value="4" required style="margin-top:50px" />
+                        <label for="typeBus">
+                            <img src="~/Images/Trips/bus.png"
+                                 alt="Type 1 car" style="height:100px;width:300px" />
+                        </label>
+                        <p id="amount3" style="padding-top:40px;padding-left:20px;background-color:#F9F9F9;height:100px;width:150px"></p>
+                        <input type="hidden" id="amnt3" name="BusAmount" />
+                    </div>
+                </div>
+                <div class="form-group" style="padding-left:15px;padding-right:15px">
+                    <p>Pickup Date</p>
+                    <div class="input-group dates-wrap">
+                        <input name="Date" id="datepicker2" class="dates form-control" placeholder="@DateTime.Now.ToShortDateString()" type="text" required>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-left:15px;padding-right:15px">
+                    <p>Pickup Time</p>
+                    <div class="bootstrap-timepicker">
+                        @Html.TextBoxFor(model=>model.Time, new { @name="Time", @id="timepicker5", @type="text", @class="form-control", @required= "required" })
+                        @*<input name="Time" id="timepicker5" type="text" class="form-control" required>*@
+                        <i class="icon-time"></i>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button class="btn text-uppercase" type="submit" style="width:inherit;text-align:center; background-color:#FDB940;" required>Confirm Trip</button>
+                </div>
+            </div>
+
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+}
+
+<!-- Modal -->
+<div class="modal fade" id="popupModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">User Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="popupModalBodyDiv">
+                <!--Body will load here-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        var days = $('#noOfDays').val();
+        $('#amount1').text(@Model.CarAmount + ' LKR');
+        $('#amount2').text(@Model.VanAmount + ' LKR');
+        $('#amount3').text(@Model.BusAmount + ' LKR');
+
+        $('#noOfDays').on('change', function () {
+            var days = $('#noOfDays').val();
+            var url = '@Url.Action("CalAmount","Trips")'
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: { days: days, tripId: @Model.tripId },
+                success: function (data) {
+                    $('#amount1').text(data.CarAmount + ' LKR');
+                    $('#amount2').text(data.VanAmount + ' LKR');
+                    $('#amount3').text(data.BusAmount + ' LKR');
+                    document.getElementById("amnt1").value = data.CarAmount;
+                    document.getElementById("amnt2").value = data.VanAmount;
+                    document.getElementById("amnt3").value = data.BusAmount;
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        })
+    })
+
+    $('#timepicker5').timepicker({
+        template: false,
+        showInputs: true,
+        minuteStep: 5
+    });
+
+</script>

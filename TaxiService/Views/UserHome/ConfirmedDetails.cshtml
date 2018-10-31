@@ -1,0 +1,120 @@
+﻿@model TaxiService.Models.ConfirmedDetailViewModel
+@{
+    ViewBag.Title = "ConfirmedDetails";
+    Layout = "~/Views/Shared/_LayoutPageHome.cshtml";
+}
+
+<style>
+    #view_confirm {
+        padding-left: 300px;
+        padding-right: 300px;
+    }
+
+    td {
+        color: black;
+    }
+</style>
+
+<link href="~/Content/common.css" rel="stylesheet" />
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    FASTER. SAFER. SMARTER.
+                </h1>
+                <h5 class="text-white">
+                    We take out the hassle and bring back the joy of traveling.
+                </h5>
+                <p class="text-white link-nav"><a href="@Url.Action("Index","UserHome")">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="@Url.Action("NewBooking","UserHome")"> Services</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<div class="modal-body site-theme-body" id="view_confirm">
+    <table class="table table-hover table-striped ">
+        @if (Model != null)
+        {
+            <tr>
+                <td><b>Pickup Location</b></td>
+                <td>@Model.PickupLocation</td>
+            </tr>
+            <tr>
+                <td><b>Pickup Date & Time</b></td>
+                <td>@Model.PickupDateTime</td>
+            </tr>
+            <tr>
+                <td><b>Drop Location</b></td>
+                <td>@Model.DropLocation</td>
+            </tr>
+            <tr>
+                <td><b>Hire Amount</b></td>
+                <td>Rs. @Math.Round(Model.EstimatedFare) </td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Number</b></td>
+                <td>@Model.VehicleNumber</td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Model</b></td>
+                <td>@Model.VehicleBrand</td>
+            </tr>
+            <tr>
+                <td><b>Driver Contact Number</b></td>
+                <td>@Model.ContactNo</td>
+            </tr>
+            <tr>
+                <td><b>Driver Image</b></td>
+
+                <td><img src="@Url.Content(Model.Image)" alt="Not Available" style="width:100px;height:100px;" /></td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td style="color:red">Your Booking has been failed. Try after few Minutes</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Pickup Location</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Pickup Date & Time</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Drop Location</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Hire Amount</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Number</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Vehicle Model</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Driver Contact Number</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><b>Driver Image</b></td>
+
+                <td><img src="" alt="Not Available" style="width:100px;height:100px;" /></td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="modal-footer site-theme">
+</div>
